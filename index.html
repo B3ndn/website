@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ben Norman</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      background-color: #F8F9FA;
+      font-family: 'EB Garamond', Georgia, serif;
+      color: #1a1a1a;
+    }
+
+    ::selection { background: #1a5f6a; color: #F8F9FA; }
+
+    .header {
+      padding: 4rem 4rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+    }
+
+    .location {
+      font-size: 0.9rem;
+      font-style: italic;
+      color: #888;
+    }
+
+    .main-container {
+      display: flex;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 4rem 4rem;
+      gap: 4rem;
+    }
+
+    .main-content { flex: 1; max-width: 650px; }
+    .sidebar { width: 280px; flex-shrink: 0; }
+
+    .sidebar-section { margin-bottom: 2rem; }
+
+    .sidebar-label {
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #1a5f6a;
+      margin-bottom: 1rem;
+    }
+
+    .sidebar-label a { color: #1a5f6a; text-decoration: none; }
+    .sidebar-label a:hover { opacity: 0.7; }
+
+    .links { display: flex; flex-direction: column; gap: 0.5rem; }
+    .links a, .links span { color: #1a1a1a; text-decoration: none; font-size: 0.95rem; width: fit-content; }
+    .links a:hover { opacity: 0.7; }
+
+    .feedback-note { font-size: 0.9rem; color: #666; line-height: 1.5; margin-top: 0.5rem; }
+
+    .section { margin-bottom: 2.5rem; }
+
+    .section-label {
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #1a5f6a;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, #1a5f6a, transparent);
+    }
+
+    .about-text {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #444;
+      margin-bottom: 1.25rem;
+    }
+
+    .text-link { color: #1a5f6a; text-decoration: none; }
+    .text-link:hover { opacity: 0.7; }
+
+    .card {
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      position: relative;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+    }
+
+    .card-title { font-size: 1.1rem; font-weight: 500; }
+    .card-org { font-size: 0.95rem; color: #1a5f6a; text-decoration: none; }
+    .card-org:hover { opacity: 0.7; }
+    .card-period { font-size: 0.9rem; color: #999; white-space: nowrap; }
+
+    .card-desc {
+      font-size: 0.95rem;
+      color: #666;
+      line-height: 1.5;
+      margin-top: 0.5rem;
+    }
+
+    .card-desc ul { list-style-type: disc; padding-left: 1.25rem; margin: 0; }
+    .card-desc li { margin-bottom: 0.25rem; }
+
+    .tooltip-trigger { position: relative; }
+
+    .tooltip-box {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      border: 1px solid rgba(0,0,0,0.1);
+      padding: 0.75rem 1rem;
+      border-radius: 4px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      z-index: 100;
+      width: 300px;
+      font-size: 0.9rem;
+      color: #444;
+      margin-top: 0.5rem;
+      line-height: 1.5;
+      pointer-events: auto;
+    }
+
+    .tooltip-trigger:hover .tooltip-box,
+    .tooltip-box:hover {
+      display: block;
+    }
+
+    sup.note {
+      color: #1a5f6a;
+      cursor: pointer;
+      font-size: 0.75em;
+    }
+
+    #popup {
+      display:none;
+      position:fixed;
+      background:white;
+      border:1px solid rgba(0,0,0,0.15);
+      padding:1rem;
+      border-radius:6px;
+      box-shadow:0 4px 20px rgba(0,0,0,0.15);
+      z-index:99999;
+      max-width:400px;
+      font-size:0.9rem;
+      color:#444;
+      line-height:1.6;
+      pointer-events:auto;
+    }
+
+    #popup a { color:#1a5f6a; }
+
+    @media (max-width: 900px) {
+      .main-container { flex-direction: column; padding: 0 2rem 2rem; }
+      .header { padding: 3rem 2rem 1.5rem; }
+      .sidebar { width: 100%; order: -1; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header">
+    <h1>Ben Norman</h1>
+    <p class="location">London, UK</p>
+  </div>
+
+  <div class="main-container">
+    <div class="main-content">
+      <section class="section">
+        <div class="section-label">About</div>
+
+        <p class="about-text">
+          I am trying to use my career to increase the odds that the long-term future of humanity goes well.<sup class="note" id="note1">1</sup>
+        </p>
+
+        <p class="about-text">
+          I expect that advanced AI (systems that far surpass humans at all cognitive tasks) will be a major determinant of how the future unfolds.<sup class="note" id="note2">2</sup>
+        </p>
+
+        <p class="about-text">
+          Even if we "solve alignment"<sup class="note" id="note3">3</sup>, we'll still need to navigate AI's effects on the most complex parts of our world: institutions, geopolitics, culture, morality, and so on.<sup class="note" id="note4">4</sup>
+          <a href="https://benjamintodd.substack.com/p/how-ai-driven-feedback-loops-could" target="_blank" class="text-link">AI-driven feedback loops</a>
+          are likely to bring about such effects far faster than the world is prepared for.
+        </p>
+
+        <p class="about-text">
+          Because of this, I'm currently exploring where I can contribute most in AI governance and strategy.<sup class="note" id="note5">5</sup>
+        </p>
+      </section>
+    </div>
+
+    <div class="sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-label">Contact</div>
+        <div class="links">
+          <span>Email: <a href="mailto:bendnorman@protonmail.com">bendnorman@protonmail.com</a></span>
+          <a href="https://www.linkedin.com/in/ben-d-norman/" target="_blank">LinkedIn</a>
+          <a href="https://x.com/ben_d_norman" target="_blank">X</a>
+          <a href="https://substack.com/@bennorman" target="_blank">Substack</a>
+          <span>Signal: benn.96</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="popup"></div>
+
+  <script>
+    const defined = {
+      note1: "Broadly, my vision for the future allows for freedom, dynamism, and pluralism.",
+      note2: `This is largely due to AI systems automating scientific and technological R&D.
+      <br><br>
+      Recommended reading:
+      <ul>
+        <li><a href="https://www.cold-takes.com/most-important-century/" target="_blank">The Most Important Century</a></li>
+        <li><a href="https://www.forethought.org/research/preparing-for-the-intelligence-explosion" target="_blank">Preparing for the Intelligence Explosion (Forethought)</a></li>
+      </ul>`,
+      note3: "“Alignment” is vague and contested; different communities mean very different things.",
+      note4: "Even aligned systems can radically reshape institutions, incentives, and culture.",
+      note5: "Governance and strategy includes rules, norms, institutions, and power dynamics shaping AI."
+    };
+
+    const popup = document.getElementById("popup");
+    let hideTimeout;
+
+    document.querySelectorAll("sup.note").forEach(note => {
+      note.addEventListener("mouseenter", e => {
+        clearTimeout(hideTimeout);
+        popup.innerHTML = defined[note.id];
+        popup.style.display = "block";
+        const rect = note.getBoundingClientRect();
+        popup.style.left = Math.min(window.innerWidth - 420, Math.max(10, rect.left)) + "px";
+        popup.style.top = rect.bottom + 10 + "px";
+      });
+
+      note.addEventListener("mouseleave", () => {
+        hideTimeout = setTimeout(() => popup.style.display = "none", 200);
+      });
+    });
+
+    popup.addEventListener("mouseenter", () => clearTimeout(hideTimeout));
+    popup.addEventListener("mouseleave", () => popup.style.display = "none");
+  </script>
+</body>
+</html>
