@@ -19,7 +19,7 @@
     
     .header {
       padding: 4rem 4rem 2rem;
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
     }
     
@@ -39,15 +39,15 @@
     
     .main-container {
       display: flex;
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
       padding: 0 4rem 4rem;
-      gap: 4rem;
+      gap: 5rem;
     }
     
-    .main-content { flex: 1; max-width: 650px; }
+    .main-content { flex: 1; max-width: 800px; }
     
-    .sidebar { width: 280px; flex-shrink: 0; }
+    .sidebar { width: 320px; flex-shrink: 0; }
     
     .sidebar-section { margin-bottom: 2rem; }
     
@@ -97,6 +97,38 @@
     
     .text-link { color: #1a5f6a; text-decoration: none; }
     .text-link:hover { opacity: 0.7; }
+    
+    .fn {
+      color: #1a5f6a;
+      cursor: pointer;
+      font-size: 0.7em;
+      vertical-align: super;
+    }
+    .fn:hover { text-decoration: underline; }
+
+    #tooltip {
+      display: none;
+      position: fixed;
+      background: #fff;
+      border: 1px solid #ccc;
+      padding: 12px 14px;
+      border-radius: 6px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      z-index: 999999;
+      max-width: 380px;
+      font-size: 0.9rem;
+      color: #444;
+      line-height: 1.55;
+    }
+    
+    #tooltip ul {
+      margin: 8px 0 0 0;
+      padding-left: 20px;
+      list-style-type: disc;
+    }
+    
+    #tooltip li { margin-bottom: 4px; }
+    #tooltip a { color: #1a5f6a; }
 
     .card {
       padding: 1rem 0;
@@ -209,13 +241,13 @@
       <section class="section">
         <div class="section-label">About</div>
         
-        <p class="about-text">I am trying to use my career to increase the odds that the long-term future of humanity goes well.<sup class="note" id="note1">1</sup></p>
+        <p class="about-text">I am trying to use my career to increase the odds that the long-term future of humanity goes well.<sup class="fn" data-fn="1">1</sup></p>
         
-        <p class="about-text">I expect that advanced AI (systems that far surpass humans at all cognitive tasks) will be a major determinant of how the future unfolds.<sup class="note" id="note2">2</sup></p>
+        <p class="about-text">I expect that advanced AI (systems that far surpass humans at all cognitive tasks) will be a major determinant of how the future unfolds.<sup class="fn" data-fn="2">2</sup></p>
         
-        <p class="about-text">Even if we "solve alignment"<sup class="note" id="note3">3</sup>, we'll still need to navigate AI's effects on the most complex parts of our world: institutions, geopolitics, culture, morality, and so on.<sup class="note" id="note4">4</sup> <a href="https://benjamintodd.substack.com/p/how-ai-driven-feedback-loops-could" target="_blank" class="text-link">AI-driven feedback loops</a> are likely to bring about such effects far faster than the world is prepared for.</p>
+        <p class="about-text">Even if we "solve alignment"<sup class="fn" data-fn="3">3</sup>, we'll still need to navigate AI's effects on the most complex parts of our world: institutions, geopolitics, culture, morality, and so on.<sup class="fn" data-fn="4">4</sup> <a href="https://benjamintodd.substack.com/p/how-ai-driven-feedback-loops-could" target="_blank" class="text-link">AI-driven feedback loops</a> are likely to bring about such effects far faster than the world is prepared for.</p>
         
-        <p class="about-text">Because of this, I'm currently exploring where I can contribute most in AI governance and strategy.<sup class="note" id="note5">5</sup></p>
+        <p class="about-text">Because of this, I'm currently exploring where I can contribute most in AI governance and strategy.<sup class="fn" data-fn="5">5</sup></p>
         
         <p class="about-text">Here are some of my recent endeavours:</p>
         
@@ -287,10 +319,10 @@
             </ul>
           </div>
         </div>
+        
+        <p class="about-text" style="font-style: italic; margin-top: 1.5rem;">For previous experience, see <a href="https://www.linkedin.com/in/ben-d-norman/" target="_blank" class="text-link">here</a>.</p>
       </section>
       
-      <!-- Education section removed -->
-
       <section class="section scroll-reveal">
         <div class="collapsible-header" onclick="this.classList.toggle('open'); this.nextElementSibling.classList.toggle('open');">
           <span class="toggle">+</span>
@@ -329,122 +361,75 @@
       <div class="sidebar-section">
         <div class="sidebar-label">Contact</div>
         <div class="links">
-          <span>Email: <a href="mailto:bendnorman@protonmail.com">bendnorman@protonmail.com</a></span>
-          <a href="https://www.linkedin.com/in/ben-d-norman/" target="_blank">LinkedIn</a>
-          <a href="https://x.com/ben_d_norman" target="_blank">X</a>
-          <a href="https://substack.com/@bennorman" target="_blank">Substack</a>
+          <span>Email: <a href="/cdn-cgi/l/email-protection#0567606b616b6a7768646b4575776a716a6b68646c692b666a68"><span class="__cf_email__" data-cfemail="d7b5b2b9b3b9b8a5bab6b997a7a5b8a3b8b9bab6bebbf9b4b8ba">[email&#160;protected]</span></a></span>
           <span>Signal: benn.96</span>
         </div>
       </div>
       
       <div class="sidebar-section">
+        <div class="sidebar-label">Links</div>
+        <div class="links">
+          <a href="https://www.linkedin.com/in/ben-d-norman/" target="_blank">LinkedIn</a>
+          <a href="https://x.com/ben_d_norman" target="_blank">X</a>
+          <a href="https://substack.com/@bennorman" target="_blank">Substack</a>
+        </div>
+      </div>
+      
+      <div class="sidebar-section">
         <div class="sidebar-label"><a href="https://www.admonymous.co/ben-norman" target="_blank">Feedback</a></div>
-        <p class="feedback-note">I'd be very grateful for thoughts on what I'm missing or ways I could do better.</p>
+        <p class="feedback-note">I'd be very grateful for any thoughts on what I'm missing or ways to improve.</p>
       </div>
     </div>
   </div>
   
-  <!-- Footnote popup element -->
-  <div id="popup" style="display:none; position:fixed; background:white; border:1px solid rgba(0,0,0,0.15); padding:1rem; border-radius:6px; box-shadow:0 4px 20px rgba(0,0,0,0.15); z-index:99999; max-width:400px; font-size:0.9rem; color:#444; line-height:1.6; pointer-events:auto;"></div>
+  <footer style="max-width: 1400px; margin: 0 auto; padding: 0 4rem 2rem; font-size: 0.85rem; color: #999; font-style: italic;">
+    Last updated December 2025
+  </footer>
   
-  <style>
-    sup.note {
-      color: #1a5f6a;
-      cursor: pointer;
-      font-size: 0.75em;
-    }
-    sup.note:hover {
-      text-decoration: underline;
-    }
-    #popup ul {
-      margin: 0.5rem 0 0 0;
-      padding-left: 1.25rem;
-    }
-    #popup li {
-      margin-bottom: 0.3rem;
-    }
-    #popup a {
-      color: #1a5f6a;
-    }
-  </style>
+  <div id="tooltip"></div>
   
-  <script>
-    var defined = {};
-    defined["note1"] = "Broadly, my vision for the future for humanity (and beyond) is one that allows for freedom, dynamism, and pluralism.<br><br>There are many discussions to be had on the specifics of what this could look like (or, whether it's even a good idea to think about the future in this way).";
-    defined["note2"] = 'This is specifically because of the implications of AI systems that can automate scientific and technological R&D. I would strongly recommend reading <a href="https://www.cold-takes.com/most-important-century/" target="_blank">"The Most Important Century"</a> to learn more. I would also recommend <a href="https://www.forethought.org/research/preparing-for-the-intelligence-explosion" target="_blank">"Preparing for the Intelligence Explosion"</a> (Forethought).';
-    defined["note3"] = 'I put this in quotation marks because it\\\'s a vague term that can mean different things to different crowds. What do we <em>mean</em> by alignment? <a href="https://softmax.com/blog/reimagining-alignment" target="_blank">Organic alignment</a>? Intent alignment? <a href="https://helentoner.substack.com/p/the-core-challenge-of-ai-alignment" target="_blank">Steerability</a>?';
-    defined["note4"] = 'Current list of topics within AI governance and strategy that I want to learn more about:<ul><li>How to approach powerful open source models</li><li>How to avoid power concentration and AI-enabled coups</li><li>What are the theories of victory for international AI governance?</li><li>AI infrastructure and hardware</li><li>What we can learn from the history of technology</li><li>AI\\\'s social impacts</li><li>The risks of regulating AI too heavily and/or too early</li><li>The political factions attempting to influence AGI</li><li>Post-superintelligence governance and society</li><li>Successionism</li></ul>';
-    defined["note5"] = '"AI governance and strategy" is a broad term. I use it to refer to the visions, rules, norms, actors, laws, institutions, tools, and plans that shape, control, and oversee the development, deployment, and diffusion of advanced AI systems.';
-    
-    var popup = document.getElementById("popup");
-    var allNotes = document.querySelectorAll("sup.note");
-
-    var hideTimeout = null;
-
-    function showPopupFor(noteEl) {
-      var id = noteEl.id;
-      var content = defined[id];
-      if (!content) return;
-
-      popup.innerHTML = content;
-      popup.style.display = "block";
-
-      var rect = noteEl.getBoundingClientRect();
-      var popupWidth = 400;
-
-      var leftPos = rect.left + window.scrollX - popupWidth/2;
-      if (leftPos < 10) leftPos = 10;
-      if (leftPos + popupWidth > window.innerWidth - 10) leftPos = window.innerWidth - popupWidth - 10;
-
-      popup.style.left = leftPos + "px";
-      // reduced gap + hide-delay below makes it easy to move into the popup
-      popup.style.top = (rect.bottom + window.scrollY + 4) + "px";
-    }
-
-    function scheduleHide() {
-      clearTimeout(hideTimeout);
-      hideTimeout = setTimeout(function() {
-        popup.style.display = "none";
-      }, 180);
-    }
-
-    function cancelHide() {
-      clearTimeout(hideTimeout);
-      hideTimeout = null;
-    }
-    
-    for (var i = 0; i < allNotes.length; i++) {
-      allNotes[i].addEventListener("mouseenter", function() {
-        cancelHide();
-        showPopupFor(this);
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    (function() {
+      var fnContent = {
+        "1": "Broadly, my vision for the future for humanity (and beyond) is one that allows for freedom, dynamism, and pluralism.<br><br>There are many discussions to be had on the specifics of what this could look like (or, whether it's even a good idea to think about the future in this way).",
+        "2": 'This is specifically because of the implications of AI systems that can automate scientific and technological R&D. I would strongly recommend reading <a href="https://www.cold-takes.com/most-important-century/" target="_blank">"The Most Important Century"</a> and <a href="https://www.forethought.org/research/preparing-for-the-intelligence-explosion" target="_blank">"Preparing for the Intelligence Explosion"</a> to learn more.',
+        "3": 'I put this in quotation marks because it\'s a vague term that can mean different things to different people. What do we <em>mean</em> by alignment? <a href="https://softmax.com/blog/reimagining-alignment" target="_blank">Organic alignment</a>? Intent alignment? <a href="https://helentoner.substack.com/p/the-core-challenge-of-ai-alignment" target="_blank">Steerability</a>?',
+        "4": 'Current list of topics within AI governance and strategy that I want to learn more about:<ul><li>How to approach powerful open source models</li><li>How to avoid power concentration and AI-enabled coups</li><li>What are the theories of victory for international AI governance?</li><li>AI infrastructure and hardware</li><li>What we can learn from the history of technology</li><li>AI\'s social impacts</li><li>The risks of regulating AI too heavily and/or too early</li><li>The political factions attempting to influence AGI</li><li>Post-superintelligence governance and society</li><li>Successionism</li></ul>',
+        "5": 'I see "AI governance and strategy" as encompassing the visions, rules, norms, actors, laws, institutions, tools, and plans that <em>shape, control, and oversee the development, deployment, and diffusion of advanced AI systems.</em>'
+      };
+      
+      var tooltip = document.getElementById("tooltip");
+      var activeNote = null;
+      
+      document.querySelectorAll(".fn").forEach(function(el) {
+        el.addEventListener("mouseenter", function(e) {
+          var key = this.getAttribute("data-fn");
+          if (fnContent[key]) {
+            activeNote = this;
+            tooltip.innerHTML = fnContent[key];
+            tooltip.style.display = "block";
+            
+            var rect = this.getBoundingClientRect();
+            var tipWidth = 380;
+            var left = rect.left + window.scrollX - tipWidth/2 + rect.width/2;
+            if (left < 10) left = 10;
+            if (left + tipWidth > window.innerWidth - 10) left = window.innerWidth - tipWidth - 10;
+            
+            tooltip.style.left = left + "px";
+            tooltip.style.top = (rect.bottom + window.scrollY + 8) + "px";
+          }
+        });
+        
+        el.addEventListener("mouseleave", function(e) {
+          setTimeout(function() {
+            if (!tooltip.matches(":hover")) {
+              tooltip.style.display = "none";
+              activeNote = null;
+            }
+          }, 100);
+        });
       });
-
-      allNotes[i].addEventListener("mouseleave", function() {
-        // delay so you can move into the popup even if there's a tiny gap
-        scheduleHide();
-      });
-    }
-
-    popup.addEventListener("mouseenter", function() {
-      cancelHide();
-    });
-
-    popup.addEventListener("mouseleave", function() {
-      scheduleHide();
-    });
-    
-    // Scroll reveal
-    var scrollSections = document.querySelectorAll('.scroll-reveal');
-    function checkScroll() {
-      var triggerBottom = window.innerHeight * 0.85;
-      for (var i = 0; i < scrollSections.length; i++) {
-        if (scrollSections[i].getBoundingClientRect().top < triggerBottom) {
-          scrollSections[i].classList.add('revealed');
-        }
-      }
-    }
-    checkScroll();
-    window.onscroll = checkScroll;
-  </script>
-</body>
-</html>
+      
+      tooltip.addEventListener("mouseleave", function() {
+        this.style.display = "none";
+        activeNote = null;
