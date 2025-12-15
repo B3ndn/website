@@ -18,9 +18,7 @@
     ::selection { background: #1a5f6a; color: #F8F9FA; }
     
     .header {
-      padding: 4rem 4rem 2rem;
-      max-width: 1400px;
-      margin: 0 auto;
+      padding: 3rem 6rem 1.5rem;
     }
     
     h1 {
@@ -39,15 +37,13 @@
     
     .main-container {
       display: flex;
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 4rem 4rem;
-      gap: 5rem;
+      padding: 0 6rem 3rem;
+      gap: 6rem;
     }
     
-    .main-content { flex: 1; max-width: 800px; }
+    .main-content { flex: 1; }
     
-    .sidebar { width: 320px; flex-shrink: 0; }
+    .sidebar { width: 300px; flex-shrink: 0; }
     
     .sidebar-section { margin-bottom: 2rem; }
     
@@ -223,10 +219,18 @@
     }
     .scroll-reveal.revealed { opacity: 1; transform: translateY(0); }
     
+    footer {
+      padding: 2rem 6rem;
+      font-size: 0.85rem;
+      color: #999;
+      font-style: italic;
+    }
+    
     @media (max-width: 900px) {
-      .main-container { flex-direction: column; padding: 0 2rem 2rem; }
-      .header { padding: 3rem 2rem 1.5rem; }
+      .main-container { flex-direction: column; padding: 0 2rem 2rem; gap: 2rem; }
+      .header { padding: 2rem 2rem 1rem; }
       .sidebar { width: 100%; order: -1; }
+      footer { padding: 1rem 2rem; }
     }
   </style>
 </head>
@@ -248,8 +252,10 @@
         <p class="about-text">Even if we "solve alignment"<sup class="fn" data-fn="3">3</sup>, we'll still need to navigate AI's effects on the most complex parts of our world: institutions, geopolitics, culture, morality, and so on.<sup class="fn" data-fn="4">4</sup> <a href="https://benjamintodd.substack.com/p/how-ai-driven-feedback-loops-could" target="_blank" class="text-link">AI-driven feedback loops</a> are likely to bring about such effects far faster than the world is prepared for.</p>
         
         <p class="about-text">Because of this, I'm currently exploring where I can contribute most in AI governance and strategy.<sup class="fn" data-fn="5">5</sup></p>
-        
-        <p class="about-text">Here are some of my recent endeavours:</p>
+      </section>
+      
+      <section class="section">
+        <div class="section-label">Recent Endeavours</div>
         
         <div class="card">
           <div class="card-header">
@@ -303,7 +309,7 @@
           </div>
         </div>
         
-        <div class="card">
+        <div class="card" style="border-bottom: none;">
           <div class="card-header">
             <div>
               <span class="card-title">Research Fellow</span>
@@ -320,48 +326,16 @@
           </div>
         </div>
         
-        <p class="about-text" style="font-style: italic; margin-top: 1.5rem;">For previous experience, see <a href="https://www.linkedin.com/in/ben-d-norman/" target="_blank" class="text-link">here</a>.</p>
+        <p style="font-style: italic; font-size: 0.95rem; color: #666; margin-top: 1rem;">For previous experience, see <a href="https://www.linkedin.com/in/ben-d-norman/" target="_blank" class="text-link">here</a>.</p>
       </section>
       
-      <section class="section scroll-reveal">
-        <div class="collapsible-header" onclick="this.classList.toggle('open'); this.nextElementSibling.classList.toggle('open');">
-          <span class="toggle">+</span>
-          <span class="section-label" style="margin-bottom: 0; flex: 1;">Norms I Like</span>
-        </div>
-        <div class="collapsible-content">
-          <div class="norm-item">
-            <div class="norm-title">Ideas over hierarchy</div>
-            <div class="norm-desc">What matters is whether something is true or useful, not who said it.</div>
-          </div>
-          <div class="norm-item">
-            <div class="norm-title">Direct communication</div>
-            <div class="norm-desc">I like it when people explicitly say what they mean.</div>
-          </div>
-          <div class="norm-item">
-            <div class="norm-title">Openness to being wrong</div>
-            <div class="norm-desc">Being wrong is often useful and fun.</div>
-          </div>
-          <div class="norm-item">
-            <div class="norm-title">Bias toward action</div>
-            <div class="norm-desc">Generally, default to trying things rather than waiting for permission.</div>
-          </div>
-          <div class="norm-item">
-            <div class="norm-title">Collaborative truth-seeking</div>
-            <div class="norm-desc">I want to try and have accurate beliefs about the world.</div>
-          </div>
-          <div class="norm-item">
-            <div class="norm-title">Constant feedback and iteration</div>
-            <div class="norm-desc">I love opening a Google Doc and seeing a long stream of interesting comments.</div>
-          </div>
-        </div>
-      </section>
     </div>
     
     <div class="sidebar">
       <div class="sidebar-section">
         <div class="sidebar-label">Contact</div>
         <div class="links">
-          <span>Email: <a href="/cdn-cgi/l/email-protection#0567606b616b6a7768646b4575776a716a6b68646c692b666a68"><span class="__cf_email__" data-cfemail="d7b5b2b9b3b9b8a5bab6b997a7a5b8a3b8b9bab6bebbf9b4b8ba">[email&#160;protected]</span></a></span>
+          <span>Email: bendnorman[at]protonmail.com</span>
           <span>Signal: benn.96</span>
         </div>
       </div>
@@ -382,13 +356,13 @@
     </div>
   </div>
   
-  <footer style="max-width: 1400px; margin: 0 auto; padding: 0 4rem 2rem; font-size: 0.85rem; color: #999; font-style: italic;">
+  <footer>
     Last updated December 2025
   </footer>
   
   <div id="tooltip"></div>
   
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script>
     (function() {
       var fnContent = {
         "1": "Broadly, my vision for the future for humanity (and beyond) is one that allows for freedom, dynamism, and pluralism.<br><br>There are many discussions to be had on the specifics of what this could look like (or, whether it's even a good idea to think about the future in this way).",
@@ -433,3 +407,21 @@
       tooltip.addEventListener("mouseleave", function() {
         this.style.display = "none";
         activeNote = null;
+      });
+      
+      // Scroll reveal
+      var scrollSections = document.querySelectorAll('.scroll-reveal');
+      function checkScroll() {
+        var triggerBottom = window.innerHeight * 0.85;
+        scrollSections.forEach(function(section) {
+          if (section.getBoundingClientRect().top < triggerBottom) {
+            section.classList.add('revealed');
+          }
+        });
+      }
+      checkScroll();
+      window.addEventListener("scroll", checkScroll);
+    })();
+  </script>
+</body>
+</html>
