@@ -13,12 +13,14 @@
     body {
       min-height: 100vh;
       background-color: #F8F9FA;
-      font-family: 'EB Garamond', Georgia, serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       color: #1a1a1a;
       transition: background-color 0.3s ease, color 0.3s ease;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
     
-    ::selection { background: #1a5f6a; color: #F8F9FA; }
+    ::selection { background: #1a7a9e; color: #F8F9FA; }
     
     .page-wrapper {
       max-width: 1200px;
@@ -30,6 +32,7 @@
     }
     
     h1 {
+      font-family: 'EB Garamond', Georgia, serif;
       font-size: 2.5rem;
       font-weight: 400;
       letter-spacing: -0.02em;
@@ -38,7 +41,7 @@
     }
     
     .location {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-style: italic;
       color: #888;
     }
@@ -56,29 +59,31 @@
     .sidebar-section { margin-bottom: 2rem; }
     
     .sidebar-label {
-      font-size: 0.85rem;
-      letter-spacing: 0.1em;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: #1a5f6a;
+      color: #1a7a9e;
       margin-bottom: 1rem;
     }
     
-    .sidebar-label a { color: #1a5f6a; text-decoration: none; }
+    .sidebar-label a { color: #1a7a9e; text-decoration: none; }
     .sidebar-label a:hover { opacity: 0.7; }
     
     .links { display: flex; flex-direction: column; gap: 0.5rem; }
-    .links a, .links span { color: #1a1a1a; text-decoration: none; font-size: 0.95rem; width: fit-content; }
+    .links a, .links span { color: #1a1a1a; text-decoration: none; font-size: 0.875rem; width: fit-content; }
     .links a:hover { opacity: 0.7; }
     
-    .feedback-note { font-size: 0.9rem; color: #666; line-height: 1.5; margin-top: 0.5rem; }
+    .feedback-note { font-size: 0.85rem; color: #666; line-height: 1.6; margin-top: 0.5rem; }
     
     .section { margin-bottom: 2.5rem; }
     
     .section-label {
-      font-size: 0.85rem;
-      letter-spacing: 0.1em;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: #1a5f6a;
+      color: #1a7a9e;
       margin-bottom: 1.25rem;
       display: flex;
       align-items: center;
@@ -89,21 +94,22 @@
       content: '';
       flex: 1;
       height: 1px;
-      background: linear-gradient(to right, #1a5f6a, transparent);
+      background: linear-gradient(to right, #1a7a9e, transparent);
     }
     
     .about-text {
-      font-size: 1.05rem;
-      line-height: 1.8;
+      font-size: 0.925rem;
+      line-height: 1.75;
       color: #444;
       margin-bottom: 1.25rem;
+      font-weight: 400;
     }
     
-    .text-link { color: #1a5f6a; text-decoration: none; }
+    .text-link { color: #1a7a9e; text-decoration: none; }
     .text-link:hover { opacity: 0.7; }
     
     .fn {
-      color: #1a5f6a;
+      color: #1a7a9e;
       cursor: pointer;
       font-size: 0.7em;
       vertical-align: super;
@@ -120,9 +126,9 @@
       box-shadow: 0 4px 16px rgba(0,0,0,0.15);
       z-index: 999999;
       max-width: 380px;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: #444;
-      line-height: 1.55;
+      line-height: 1.6;
     }
     
     #tooltip ul {
@@ -132,7 +138,7 @@
     }
     
     #tooltip li { margin-bottom: 4px; }
-    #tooltip a { color: #1a5f6a; }
+    #tooltip a { color: #1a7a9e; }
 
     .card {
       padding: 1rem 0;
@@ -147,45 +153,22 @@
       gap: 1rem;
     }
     
-    .card-title { font-size: 1.1rem; font-weight: 500; }
-    .card-org { font-size: 0.95rem; color: #1a5f6a; text-decoration: none; }
+    .card-title { font-size: 0.95rem; font-weight: 500; }
+    .card-org { font-size: 0.9rem; color: #1a7a9e; text-decoration: none; }
     .card-org:hover { opacity: 0.7; }
-    .card-period { font-size: 0.9rem; color: #999; white-space: nowrap; }
+    .card-period { font-size: 0.825rem; color: #999; white-space: nowrap; }
     
     .card-desc {
-      font-size: 0.95rem;
+      font-size: 0.875rem;
       color: #666;
-      line-height: 1.5;
+      line-height: 1.6;
       margin-top: 0.5rem;
     }
     
     .card-desc ul { list-style-type: disc; padding-left: 1.25rem; margin: 0; }
     .card-desc li { margin-bottom: 0.25rem; }
-    .card-desc a { color: #1a5f6a; text-decoration: none; }
+    .card-desc a { color: #1a7a9e; text-decoration: none; }
     .card-desc a:hover { opacity: 0.7; }
-    
-    .tooltip-trigger { position: relative; cursor: pointer; }
-    .tooltip-trigger:hover .tooltip-box { display: block; }
-    
-    .tooltip-box {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background: white;
-      border: 1px solid rgba(0,0,0,0.1);
-      padding: 0.75rem 1rem;
-      border-radius: 4px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      z-index: 100;
-      width: 300px;
-      font-size: 0.9rem;
-      color: #444;
-      margin-top: 0.5rem;
-      line-height: 1.5;
-    }
-    
-    .tooltip-box a { color: #1a5f6a; text-decoration: underline; }
     
     .collapsible-header {
       display: flex;
@@ -197,7 +180,7 @@
     
     .collapsible-header .toggle {
       font-size: 1rem;
-      color: #1a5f6a;
+      color: #1a7a9e;
       width: 1rem;
       transition: transform 0.2s ease;
     }
@@ -208,15 +191,15 @@
     .collapsible-content.open { display: block; }
     
     .norm-item { margin-bottom: 0.6rem; position: relative; }
-    .norm-title { font-size: 0.95rem; font-weight: 500; cursor: default; }
+    .norm-title { font-size: 0.9rem; font-weight: 500; cursor: default; }
     .norm-desc {
       display: none;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: #666;
-      line-height: 1.4;
+      line-height: 1.5;
       margin-top: 0.25rem;
       padding-left: 0.5rem;
-      border-left: 2px solid #1a5f6a;
+      border-left: 2px solid #1a7a9e;
     }
     .norm-item:hover .norm-desc { display: block; }
     
@@ -229,7 +212,7 @@
     
     footer {
       padding: 2rem 6rem;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: #999;
       font-style: italic;
     }
@@ -248,7 +231,6 @@
       transition: all 0.2s;
       padding: 10px;
       border-radius: 50%;
-      /* Helper to center the SVGs inside the button */
       display: flex;
       align-items: center;
       justify-content: center;
@@ -280,7 +262,6 @@
       background-color: rgba(255,255,255,0.1);
     }
 
-    /* Lighten the accent color for better contrast on dark */
     body.dark-mode .sidebar-label,
     body.dark-mode .sidebar-label a,
     body.dark-mode .section-label,
@@ -290,11 +271,11 @@
     body.dark-mode .card-desc a,
     body.dark-mode .collapsible-header .toggle,
     body.dark-mode .norm-desc {
-      color: #7ad1dd; 
+      color: #5ec4db; 
     }
 
     body.dark-mode .section-label::after {
-      background: linear-gradient(to right, #7ad1dd, transparent);
+      background: linear-gradient(to right, #5ec4db, transparent);
     }
 
     body.dark-mode .links a, 
@@ -315,31 +296,25 @@
       border-bottom: 1px solid rgba(255,255,255,0.1);
     }
 
-    body.dark-mode #tooltip,
-    body.dark-mode .tooltip-box {
+    body.dark-mode #tooltip {
       background: #1c1c1c;
       border: 1px solid #333;
       color: #ccc;
       box-shadow: 0 4px 16px rgba(0,0,0,0.5);
     }
 
-    body.dark-mode #tooltip a,
-    body.dark-mode .tooltip-box a {
-      color: #7ad1dd;
+    body.dark-mode #tooltip a {
+      color: #5ec4db;
     }
 
     body.dark-mode ::selection {
-      background: #7ad1dd;
+      background: #5ec4db;
       color: #111;
     }
 
     /* --- ICON TOGGLE LOGIC --- */
-    
-    /* Default (Light Mode): Show MOON, Hide SUN */
     .icon-moon { display: block; }
     .icon-sun { display: none; }
-    
-    /* Dark Mode: Show SUN, Hide MOON */
     body.dark-mode .icon-moon { display: none; }
     body.dark-mode .icon-sun { display: block; }
     
@@ -427,7 +402,7 @@
             </div>
           </div>
           
-          <div class="card tooltip-trigger">
+          <div class="card">
             <div class="card-header">
               <div>
                 <span class="card-title">Co-Founder and Editor</span>
@@ -440,9 +415,6 @@
               <ul>
                 <li>Building a home for AI stories that are too weird, too premature, or too awkward for the timeline.</li>
               </ul>
-            </div>
-            <div class="tooltip-box">
-              We'd love to read your pitch! <a href="https://scheme.zone/" target="_blank">Submit here.</a> We're looking for fiction, analysis, journalism, and pieces that transcend categorisation.
             </div>
           </div>
           
@@ -462,7 +434,7 @@
             </div>
           </div>
           
-          <p style="font-style: italic; font-size: 0.95rem; color: #666; margin-top: 1rem;">For previous experience, see <a href="https://www.linkedin.com/in/ben-d-norman/" target="_blank" class="text-link">here</a>.</p>
+          <p style="font-style: italic; font-size: 0.875rem; color: #666; margin-top: 1rem;">For previous experience, see <a href="https://www.linkedin.com/in/ben-d-norman/" target="_blank" class="text-link">here</a>.</p>
         </section>
         
       </div>
@@ -539,7 +511,7 @@
           "2": 'This is specifically because of the implications of AI systems that can automate scientific and technological R&D. I would strongly recommend reading <a href="https://www.cold-takes.com/most-important-century/" target="_blank">"The Most Important Century"</a> and <a href="https://www.forethought.org/research/preparing-for-the-intelligence-explosion" target="_blank">"Preparing for the Intelligence Explosion"</a> to learn more.',
           "3": 'I put this in quotation marks because it\'s a vague term that can mean different things to different people. What do we <em>mean</em> by alignment? <a href="https://softmax.com/blog/reimagining-alignment" target="_blank">Organic alignment</a>? <a href="https://ai-alignment.com/clarifying-ai-alignment-cec47cd69dd6" target="_blank">Intent alignment</a>? <a href="https://helentoner.substack.com/p/the-core-challenge-of-ai-alignment" target="_blank">Steerability</a>?',
           "4": 'Some topics within AI governance and strategy that I want to learn more about:<ul><li>How to approach powerful open source models</li><li>How to avoid power concentration and AI-enabled coups</li><li>What are the theories of victory for international AI governance?</li><li>AI infrastructure and hardware</li><li>Digital minds and AI welfare</li><li>Compute governance and verification</li><li>What we can learn from the history of technology</li><li>AI\'s social impacts</li><li>The risks of regulating AI too heavily and/or too early</li><li>The political factions attempting to influence AGI</li><li>Post-superintelligence governance and society</li><li>Successionism</li></ul>',
-          "5": '“AI governance and strategy” being defined as the visions, rules, norms, actors, laws, institutions, tools, and plans that shape, regulate, and oversee the development, deployment, and diffusion of frontier AI systems.'
+          "5": '"AI governance and strategy" being defined as the visions, rules, norms, actors, laws, institutions, tools, and plans that shape, regulate, and oversee the development, deployment, and diffusion of frontier AI systems.'
         };
         
         var tooltip = document.getElementById("tooltip");
