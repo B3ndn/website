@@ -48,7 +48,7 @@
     
     .main-container {
       display: flex;
-      padding: 0 6rem 3rem;
+      padding: 0 6rem 0;
       gap: 6rem;
     }
     
@@ -209,10 +209,67 @@
       transition: opacity 0.8s ease-out, transform 0.8s ease-out;
     }
     .scroll-reveal.revealed { opacity: 1; transform: translateY(0); }
+
+    /* Tweet embed section */
+    .tweet-embed {
+      margin-bottom: 2.5rem;
+    }
+
+    /* Reading ticker */
+    .reading-ticker {
+      position: relative;
+      min-height: 3.5rem;
+    }
+
+    .ticker-item {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .ticker-item.active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .ticker-type {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #999;
+    }
+
+    .ticker-title {
+      font-size: 0.875rem;
+      color: #1a1a1a;
+      text-decoration: none;
+      line-height: 1.4;
+    }
+
+    a.ticker-title:hover { opacity: 0.7; }
+
+    .ticker-author {
+      font-size: 0.78rem;
+      color: #999;
+      font-style: italic;
+    }
+
+    body.dark-mode .ticker-title { color: #e0e0e0; }
+    body.dark-mode .ticker-type { color: #777; }
+    body.dark-mode .ticker-author { color: #777; }
     
     footer {
-      padding: 2rem 6rem;
-      font-size: 0.8rem;
+      padding: 1.5rem 6rem 2rem;
+      font-size: 0.7rem;
       color: #999;
       font-style: italic;
     }
@@ -355,87 +412,22 @@
     <div class="main-container">
       <div class="main-content">
         <section class="section">
-          <div class="section-label">About</div>
           
-          <p class="about-text">My mission is to help increase the odds that the long-term future of humanity goes well.<sup class="fn" data-fn="1">1</sup></p>
+          <p class="about-text">I want to help increase the odds that the long-term future of humanity goes well.<sup class="fn" data-fn="1">1</sup></p>
           
-          <p class="about-text">I expect that how we handle the development of very advanced AI (e.g. systems that far surpass humans at all cognitive tasks) will <em>massively</em> influence how the future unfolds.<sup class="fn" data-fn="2">2</sup></p>
+          <p class="about-text">I'm currently a Visiting Researcher at the <a href="https://saif.org/" target="_blank" class="text-link">Safe AI Forum</a>, researching international agreements on AI, and a FIG Fellow at <a href="https://www.forethought.org/" target="_blank" class="text-link">Forethought</a> working on post-AGI futures.<br><br>I also recently co-founded <a href="https://scheme.zone/" target="_blank" class="text-link">a magazine</a> to house stories from AI's strange frontier.</p>
           
-          <p class="about-text">Even if we "solve alignment"<sup class="fn" data-fn="3">3</sup>, we'll still need to navigate AI's effects on the most complex parts of our world: institutions, geopolitics, culture, morality, and so on.<sup class="fn" data-fn="4">4</sup><br><br>I think <a href="https://benjamintodd.substack.com/p/how-ai-driven-feedback-loops-could" target="_blank" class="text-link">AI-driven feedback loops</a> are likely to bring about such effects far faster than the world is prepared for.</p>
+          <p class="about-text">Why do I care about AI? Because I expect that how we handle its development and deployment will <em>massively</em> influence how the future unfolds.<sup class="fn" data-fn="2">2</sup></p>
           
-          <p class="about-text">Because of this, I'm currently exploring where I can contribute most in the realm of frontier AI governance and strategy.<sup class="fn" data-fn="5">5</sup></p>
+          <p class="about-text">I am especially interested in figuring out how to navigate AI's effects on the most complex parts of our world: institutions, geopolitics, culture, morality, and so on.<sup class="fn" data-fn="3">3</sup><br><br>I think <a href="https://benjamintodd.substack.com/p/how-ai-driven-feedback-loops-could" target="_blank" class="text-link">AI-driven feedback loops</a> are likely to bring about such effects far faster than humanity is prepared for, leading us to a <a href="https://www.lesswrong.com/posts/cxuzALcmucCndYv4a/daniel-kokotajlo-s-shortform?commentId=Miqsr59WmwoWybJet" target="_blank" class="text-link">very unfamiliar world</a>.</p>
+        </section>
+
+        <section class="tweet-embed" id="tweet-section">
+          <blockquote class="twitter-tweet" data-dnt="true" data-theme="light">
+            <a href="https://x.com/takimunk/status/2038056041565352162"></a>
+          </blockquote>
         </section>
         
-        <section class="section">
-          <div class="section-label">Recent Endeavours</div>
-          
-          <div class="card">
-            <div class="card-header">
-              <div>
-                <span class="card-title">Visiting Researcher</span>
-                <span style="color: #888; margin: 0 0.5rem;">·</span>
-                <a href="https://saif.org/" target="_blank" class="card-org">Safe AI Forum</a>
-              </div>
-              <span class="card-period">Aug 2025 —</span>
-            </div>
-            <div class="card-desc">
-              <ul>
-                <li>Researching opportunities for international coordination on frontier AI risks.</li>
-                <li>Managing a publication on AI geopolitics and cooperation.</li>
-              </ul>
-            </div>
-          </div>
-          
-          <div class="card">
-            <div class="card-header">
-              <div>
-                <span class="card-title">Research Fellow</span>
-                <span style="color: #888; margin: 0 0.5rem;">·</span>
-                <a href="https://futureimpact.group/" target="_blank" class="card-org">Future Impact Group</a>
-              </div>
-              <span class="card-period">Dec 2025 —</span>
-            </div>
-            <div class="card-desc">
-              <ul>
-                <li>Working with Rose Hadshar (Researcher at <a href="https://www.forethought.org/" target="_blank">Forethought</a>) on AI futures and macrostrategy.</li>
-              </ul>
-            </div>
-          </div>
-          
-          <div class="card">
-            <div class="card-header">
-              <div>
-                <span class="card-title">Co-Founder and Editor</span>
-                <span style="color: #888; margin: 0 0.5rem;">·</span>
-                <a href="https://scheme.zone/" target="_blank" class="card-org">SCHEME Magazine</a>
-              </div>
-              <span class="card-period">Oct 2025 —</span>
-            </div>
-            <div class="card-desc">
-              <ul>
-                <li>Building a home for AI stories that are too weird, too premature, or too awkward for the timeline.</li>
-              </ul>
-            </div>
-          </div>
-          
-          <div class="card" style="border-bottom: none;">
-            <div class="card-header">
-              <div>
-                <span class="card-title">Research Fellow</span>
-                <span style="color: #888; margin: 0 0.5rem;">·</span>
-                <a href="https://sparai.org/" target="_blank" class="card-org">Supervised Program for Alignment Research</a>
-              </div>
-              <span class="card-period">Sept 2025 —</span>
-            </div>
-            <div class="card-desc">
-              <ul>
-                <li>Researching existing international obligations to identify precedents for red lines on AI-enabled biological weapons development.</li>
-              </ul>
-            </div>
-          </div>
-          
-          <p style="font-style: italic; font-size: 0.875rem; color: #666; margin-top: 1rem;">For previous experience, see <a href="https://www.linkedin.com/in/ben-d-norman/" target="_blank" class="text-link">here</a>.</p>
-        </section>
         
       </div>
       
@@ -461,6 +453,7 @@
           <div class="sidebar-label"><a href="https://www.admonymous.co/ben-norman" target="_blank">Feedback</a></div>
           <p class="feedback-note">I'd be very grateful for any thoughts on what I'm missing or ways to improve! Thanks :)</p>
         </div>
+
       </div>
     </div>
     
@@ -493,13 +486,37 @@
           body.classList.add('dark-mode');
         }
 
+        /* --- TWEET THEME SYNC --- */
+        function reloadTweetEmbed() {
+          var container = document.getElementById('tweet-section');
+          if (!container) return;
+          var isDark = body.classList.contains('dark-mode');
+          var theme = isDark ? 'dark' : 'light';
+          
+          container.innerHTML = '<blockquote class="twitter-tweet" data-dnt="true" data-theme="' + theme + '">' +
+            '<a href="https://x.com/takimunk/status/2038056041565352162"></a>' +
+            '</blockquote>';
+          
+          if (window.twttr && window.twttr.widgets) {
+            window.twttr.widgets.load(container);
+          }
+        }
+
         if(toggleBtn) {
           toggleBtn.addEventListener('click', () => {
             body.classList.toggle('dark-mode');
             const theme = body.classList.contains('dark-mode') ? 'dark' : 'light';
             setStoredTheme(theme);
+            reloadTweetEmbed();
           });
         }
+
+        /* Set initial tweet theme if dark mode is active on load */
+        if (body.classList.contains('dark-mode')) {
+          var bq = document.querySelector('#tweet-section blockquote');
+          if (bq) bq.setAttribute('data-theme', 'dark');
+        }
+
       } catch (err) {
         console.error("Theme toggle error:", err);
       }
@@ -507,11 +524,9 @@
       /* --- TOOLTIP & INTERACTIVITY --- */
       (function() {
         var fnContent = {
-          "1": "At a high-level, my vision for the future for humanity (and beyond) is one that allows for <b>freedom, dynamism, abundance, and pluralism.</b><br><br>There are lots of other qualities I think a good future should have (e.g. <b>no extreme suffering, care and protection for those who cannot protect themselves (e.g. non-human animals), truth-seeking/scout mindset as the default,</b> etc), but these ones seem like they could be the most important in the very long-term.<br><br>There are many discussions to be had on the specifics of what such a future could look like (or, whether it's even a good idea to think about the future in a specific way)!",
-          "2": 'This is specifically because of the implications of AI systems that can automate scientific and technological R&D. I would strongly recommend reading <a href="https://www.cold-takes.com/most-important-century/" target="_blank">"The Most Important Century"</a> and <a href="https://www.forethought.org/research/preparing-for-the-intelligence-explosion" target="_blank">"Preparing for the Intelligence Explosion"</a> to learn more.',
-          "3": 'I put this in quotation marks because it\'s a vague term that can mean different things to different people. What do we <em>mean</em> by alignment? <a href="https://softmax.com/blog/reimagining-alignment" target="_blank">Organic alignment</a>? <a href="https://ai-alignment.com/clarifying-ai-alignment-cec47cd69dd6" target="_blank">Intent alignment</a>? <a href="https://helentoner.substack.com/p/the-core-challenge-of-ai-alignment" target="_blank">Steerability</a>?',
-          "4": 'Some topics within AI governance and strategy that I want to learn more about:<ul><li>How to approach powerful open source models</li><li>How to avoid power concentration and AI-enabled coups</li><li>What are the theories of victory for international AI governance?</li><li>AI infrastructure and hardware</li><li>Digital minds and AI welfare</li><li>Compute governance and verification</li><li>What we can learn from the history of technology</li><li>AI\'s social impacts</li><li>The risks of regulating AI too heavily and/or too early</li><li>The political factions attempting to influence AGI</li><li>Post-superintelligence governance and society</li><li>Successionism</li></ul>',
-          "5": '"AI governance and strategy" being defined as the visions, rules, norms, actors, laws, institutions, tools, and plans that shape, regulate, and oversee the development, deployment, and diffusion of frontier AI systems.'
+          "1": "At a high-level, my vision for the future for humanity (and beyond) is one that allows for freedom, abundance, and pluralism, and lacks extreme suffering.<br><br>There are lots of <a href='https://forum.effectivealtruism.org/posts/MP9qDZCXMaTJhiJ9u/ea-is-three-radical-ideas-i-want-to-protect' target='_blank'>other qualities</a> I think a good future should have (e.g. care for those who cannot protect themselves, truth-seeking as the default), but these seem like they could be the most important in the very long-term.<br><br>There are many discussions to be had on the specifics of what such a future could look like! If you are interested in discussing this, I would love to hear from you.",
+          "2": 'This is mainly because of the implications of AI systems that can automate scientific and technological R&D. I would strongly recommend reading <a href="https://www.cold-takes.com/most-important-century/" target="_blank">"The Most Important Century"</a> and <a href="https://www.forethought.org/research/preparing-for-the-intelligence-explosion" target="_blank">"Preparing for the Intelligence Explosion"</a> to learn more.',
+          "3": 'Some topics within AI governance and strategy that I want to learn more about:<ul><li>How to approach powerful open source models</li><li>How to avoid power concentration and AI-enabled coups</li><li>What are the theories of victory for international AI governance?</li><li>AI infrastructure and hardware</li><li>Digital minds and AI welfare</li><li>Compute governance and verification</li><li>What we can learn from the history of technology</li><li>AI\'s social impacts</li><li>The risks of regulating AI too heavily and/or too early</li><li>The political factions attempting to influence AGI</li><li>Post-superintelligence governance and society</li><li>Successionism</li></ul>'
         };
         
         var tooltip = document.getElementById("tooltip");
@@ -566,5 +581,6 @@
 
     });
   </script>
+  <script async src="https://platform.twitter.com/widgets.js"></script>
 </body>
 </html>
