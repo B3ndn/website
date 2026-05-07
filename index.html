@@ -482,41 +482,6 @@
           body.classList.add('dark-mode');
         }
 
-        /* --- TWEET THEME SYNC --- */
-        function reloadTweetEmbed() {
-          var container = document.getElementById('tweet-section');
-          if (!container) return;
-          var isDark = body.classList.contains('dark-mode');
-          var theme = isDark ? 'dark' : 'light';
-          
-          container.innerHTML = '<blockquote class="twitter-tweet" data-dnt="true" data-theme="' + theme + '">' +
-            '<a href="https://x.com/takimunk/status/2038056041565352162"></a>' +
-            '</blockquote>';
-          
-          if (window.twttr && window.twttr.widgets) {
-            window.twttr.widgets.load(container);
-          }
-        }
-
-        if(toggleBtn) {
-          toggleBtn.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            const theme = body.classList.contains('dark-mode') ? 'dark' : 'light';
-            setStoredTheme(theme);
-            reloadTweetEmbed();
-          });
-        }
-
-        /* Set initial tweet theme if dark mode is active on load */
-        if (body.classList.contains('dark-mode')) {
-          var bq = document.querySelector('#tweet-section blockquote');
-          if (bq) bq.setAttribute('data-theme', 'dark');
-        }
-
-      } catch (err) {
-        console.error("Theme toggle error:", err);
-      }
-
       /* --- TOOLTIP & INTERACTIVITY --- */
       (function() {
         var fnContent = {
