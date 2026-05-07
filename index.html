@@ -7,9 +7,10 @@
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    
+
     body {
       min-height: 100vh;
       background-color: #F8F9FA;
@@ -19,18 +20,18 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
-    
+
     ::selection { background: #1a7a9e; color: #F8F9FA; }
-    
+
     .page-wrapper {
       max-width: 1200px;
       margin: 0 auto;
     }
-    
+
     .header {
       padding: 3rem 6rem 1.5rem;
     }
-    
+
     h1 {
       font-family: 'EB Garamond', Georgia, serif;
       font-size: 2.5rem;
@@ -39,25 +40,28 @@
       line-height: 1.15;
       margin-bottom: 0.5rem;
     }
-    
+
     .location {
       font-size: 0.85rem;
       font-style: italic;
       color: #888;
     }
-    
+
     .main-container {
       display: flex;
       padding: 0 6rem 0;
       gap: 6rem;
     }
-    
+
     .main-content { flex: 1; }
-    
-    .sidebar { width: 300px; flex-shrink: 0; }
-    
+
+    .sidebar {
+      width: 300px;
+      flex-shrink: 0;
+    }
+
     .sidebar-section { margin-bottom: 2rem; }
-    
+
     .sidebar-label {
       font-size: 0.75rem;
       font-weight: 500;
@@ -66,18 +70,39 @@
       color: #1a7a9e;
       margin-bottom: 1rem;
     }
-    
-    .sidebar-label a { color: #1a7a9e; text-decoration: none; }
+
+    .sidebar-label a {
+      color: #1a7a9e;
+      text-decoration: none;
+    }
+
     .sidebar-label a:hover { opacity: 0.7; }
-    
-    .links { display: flex; flex-direction: column; gap: 0.5rem; }
-    .links a, .links span { color: #1a1a1a; text-decoration: none; font-size: 0.875rem; width: fit-content; }
+
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .links a,
+    .links span {
+      color: #1a1a1a;
+      text-decoration: none;
+      font-size: 0.875rem;
+      width: fit-content;
+    }
+
     .links a:hover { opacity: 0.7; }
-    
-    .feedback-note { font-size: 0.85rem; color: #666; line-height: 1.6; margin-top: 0.5rem; }
-    
+
+    .feedback-note {
+      font-size: 0.85rem;
+      color: #666;
+      line-height: 1.6;
+      margin-top: 0.5rem;
+    }
+
     .section { margin-bottom: 2.5rem; }
-    
+
     .section-label {
       font-size: 0.75rem;
       font-weight: 500;
@@ -89,14 +114,14 @@
       align-items: center;
       gap: 1rem;
     }
-    
+
     .section-label::after {
       content: '';
       flex: 1;
       height: 1px;
       background: linear-gradient(to right, #1a7a9e, transparent);
     }
-    
+
     .about-text {
       font-size: 0.925rem;
       line-height: 1.75;
@@ -104,16 +129,21 @@
       margin-bottom: 1.25rem;
       font-weight: 400;
     }
-    
-    .text-link { color: #1a7a9e; text-decoration: none; }
+
+    .text-link {
+      color: #1a7a9e;
+      text-decoration: none;
+    }
+
     .text-link:hover { opacity: 0.7; }
-    
+
     .fn {
       color: #1a7a9e;
       cursor: pointer;
       font-size: 0.7em;
       vertical-align: super;
     }
+
     .fn:hover { text-decoration: underline; }
 
     #tooltip {
@@ -130,13 +160,13 @@
       color: #444;
       line-height: 1.6;
     }
-    
+
     #tooltip ul {
       margin: 8px 0 0 0;
       padding-left: 20px;
       list-style-type: disc;
     }
-    
+
     #tooltip li { margin-bottom: 4px; }
     #tooltip a { color: #1a7a9e; }
 
@@ -145,31 +175,55 @@
       border-bottom: 1px solid rgba(0,0,0,0.06);
       position: relative;
     }
-    
+
     .card-header {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
       gap: 1rem;
     }
-    
-    .card-title { font-size: 0.95rem; font-weight: 500; }
-    .card-org { font-size: 0.9rem; color: #1a7a9e; text-decoration: none; }
+
+    .card-title {
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .card-org {
+      font-size: 0.9rem;
+      color: #1a7a9e;
+      text-decoration: none;
+    }
+
     .card-org:hover { opacity: 0.7; }
-    .card-period { font-size: 0.825rem; color: #999; white-space: nowrap; }
-    
+
+    .card-period {
+      font-size: 0.825rem;
+      color: #999;
+      white-space: nowrap;
+    }
+
     .card-desc {
       font-size: 0.875rem;
       color: #666;
       line-height: 1.6;
       margin-top: 0.5rem;
     }
-    
-    .card-desc ul { list-style-type: disc; padding-left: 1.25rem; margin: 0; }
+
+    .card-desc ul {
+      list-style-type: disc;
+      padding-left: 1.25rem;
+      margin: 0;
+    }
+
     .card-desc li { margin-bottom: 0.25rem; }
-    .card-desc a { color: #1a7a9e; text-decoration: none; }
+
+    .card-desc a {
+      color: #1a7a9e;
+      text-decoration: none;
+    }
+
     .card-desc a:hover { opacity: 0.7; }
-    
+
     .collapsible-header {
       display: flex;
       align-items: center;
@@ -177,21 +231,34 @@
       cursor: pointer;
       user-select: none;
     }
-    
+
     .collapsible-header .toggle {
       font-size: 1rem;
       color: #1a7a9e;
       width: 1rem;
       transition: transform 0.2s ease;
     }
-    
+
     .collapsible-header.open .toggle { transform: rotate(45deg); }
-    
-    .collapsible-content { display: none; margin-top: 1rem; }
+
+    .collapsible-content {
+      display: none;
+      margin-top: 1rem;
+    }
+
     .collapsible-content.open { display: block; }
-    
-    .norm-item { margin-bottom: 0.6rem; position: relative; }
-    .norm-title { font-size: 0.9rem; font-weight: 500; cursor: default; }
+
+    .norm-item {
+      margin-bottom: 0.6rem;
+      position: relative;
+    }
+
+    .norm-title {
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: default;
+    }
+
     .norm-desc {
       display: none;
       font-size: 0.8rem;
@@ -201,21 +268,20 @@
       padding-left: 0.5rem;
       border-left: 2px solid #1a7a9e;
     }
+
     .norm-item:hover .norm-desc { display: block; }
-    
+
     .scroll-reveal {
       opacity: 0;
       transform: translateY(40px);
       transition: opacity 0.8s ease-out, transform 0.8s ease-out;
     }
-    .scroll-reveal.revealed { opacity: 1; transform: translateY(0); }
 
-    /* Tweet embed section */
-    .tweet-embed {
-      margin-bottom: 2.5rem;
+    .scroll-reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    /* Reading ticker */
     .reading-ticker {
       position: relative;
       min-height: 3.5rem;
@@ -266,7 +332,7 @@
     body.dark-mode .ticker-title { color: #e0e0e0; }
     body.dark-mode .ticker-type { color: #777; }
     body.dark-mode .ticker-author { color: #777; }
-    
+
     footer {
       padding: 1.5rem 6rem 2rem;
       font-size: 0.7rem;
@@ -274,7 +340,6 @@
       font-style: italic;
     }
 
-    /* DARK MODE TOGGLE BTN */
     .theme-toggle {
       position: fixed;
       top: 1.5rem;
@@ -292,29 +357,28 @@
       align-items: center;
       justify-content: center;
     }
-    
-    .theme-toggle:hover { 
-      opacity: 1; 
+
+    .theme-toggle:hover {
+      opacity: 1;
       background-color: rgba(0,0,0,0.05);
     }
-    
-    .theme-toggle svg { 
-      width: 20px; 
-      height: 20px; 
+
+    .theme-toggle svg {
+      width: 20px;
+      height: 20px;
       fill: currentColor;
       pointer-events: none;
     }
 
-    /* DARK MODE STYLES */
     body.dark-mode {
       background-color: #111111;
       color: #e0e0e0;
     }
 
-    body.dark-mode .theme-toggle { 
-      color: #e0e0e0; 
+    body.dark-mode .theme-toggle {
+      color: #e0e0e0;
     }
-    
+
     body.dark-mode .theme-toggle:hover {
       background-color: rgba(255,255,255,0.1);
     }
@@ -328,20 +392,20 @@
     body.dark-mode .card-desc a,
     body.dark-mode .collapsible-header .toggle,
     body.dark-mode .norm-desc {
-      color: #5ec4db; 
+      color: #5ec4db;
     }
 
     body.dark-mode .section-label::after {
       background: linear-gradient(to right, #5ec4db, transparent);
     }
 
-    body.dark-mode .links a, 
+    body.dark-mode .links a,
     body.dark-mode .links span {
       color: #e0e0e0;
     }
 
     body.dark-mode .about-text { color: #ccc; }
-    
+
     body.dark-mode .location,
     body.dark-mode .feedback-note,
     body.dark-mode .card-desc,
@@ -369,27 +433,45 @@
       color: #111;
     }
 
-    /* --- ICON TOGGLE LOGIC --- */
     .icon-moon { display: block; }
     .icon-sun { display: none; }
+
     body.dark-mode .icon-moon { display: none; }
     body.dark-mode .icon-sun { display: block; }
-    
+
     @media (max-width: 900px) {
-      .main-container { flex-direction: column; padding: 0 2rem 2rem; gap: 2rem; }
-      .header { padding: 2rem 2rem 1rem; }
-      .sidebar { width: 100%; }
-      footer { padding: 1rem 2rem; }
-      .theme-toggle { top: 1rem; right: 1rem; }
+      .main-container {
+        flex-direction: column;
+        padding: 0 2rem 2rem;
+        gap: 2rem;
+      }
+
+      .header {
+        padding: 2rem 2rem 1rem;
+      }
+
+      .sidebar {
+        width: 100%;
+      }
+
+      footer {
+        padding: 1rem 2rem;
+      }
+
+      .theme-toggle {
+        top: 1rem;
+        right: 1rem;
+      }
     }
   </style>
 </head>
+
 <body>
   <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Dark Mode">
     <svg class="icon-moon" viewBox="0 0 24 24">
       <path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/>
     </svg>
-    
+
     <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <circle cx="12" cy="12" r="5"></circle>
       <line x1="12" y1="1" x2="12" y2="3"></line>
@@ -408,25 +490,54 @@
       <h1>Ben Norman</h1>
       <p class="location">London, UK</p>
     </div>
-    
+
     <div class="main-container">
       <div class="main-content">
         <section class="section">
-          
           <p class="about-text">Hi, I'm Ben!</p>
-          
-          <p class="about-text">I'm currently a Visiting Researcher at the <a href="https://saif.org/" target="_blank" class="text-link">Safe AI Forum</a>, researching international agreements on AI, and a <a href="https://futureimpact.group/" target="_blank" class="text-link">FIG</a> Fellow at <a href="https://www.forethought.org/" target="_blank" class="text-link">Forethought</a> thinking about post-AGI futures.<br><br>I also recently co-founded <a href="https://scheme.zone/" target="_blank" class="text-link">a magazine</a> to house stories from AI's strange frontier.</p>
-          
-          <p class="about-text">Why do I care about AI? Because I expect that how we handle its development and deployment will <a href="https://www.forethought.org/research/preparing-for-the-intelligence-explosion" target="_blank" class="text-link"><em>massively</em> influence</a> how the future unfolds.</p>
-          
-          <p class="about-text">I am especially interested in figuring out <a href="https://80000hours.org/podcast/episodes/ajeya-cotra-transformative-ai-crunch-time/" target="_blank" class="text-link">how to navigate</a> AI's effects on the most complex parts of our world: <a href="https://www.youtube.com/watch?v=wkPsbwzyOa8" target="_blank" class="text-link">institutions</a>, <a href="https://www.youtube.com/watch?v=Co09gIPF4aQ" target="_blank" class="text-link">geopolitics</a>, <a href="https://80000hours.org/podcast/episodes/tom-davidson-ai-enabled-human-power-grabs/" target="_blank" class="text-link">power</a>, <a href="https://80000hours.org/podcast/episodes/robert-long-eleos-ai-welfare-research/" target="_blank" class="text-link">morality</a>, and <a href="https://80000hours.org/podcast/episodes/will-macaskill-century-in-a-decade-navigating-intelligence-explosion/" target="_blank" class="text-link">so on</a>.</p>
 
-          <p class="about-text">I consider myself part of the <a href="https://forum.effectivealtruism.org/posts/MP9qDZCXMaTJhiJ9u/ea-is-three-radical-ideas-i-want-to-protect" target="_blank" class="text-link">effective altruism</a> and <a href="https://rootsofprogress.org/manifesto/" target="_blank" class="text-link">pro-progress</a> communities.</p>
+          <p class="about-text">
+            I'm currently a Visiting Researcher at the
+            <a href="https://saif.org/" target="_blank" class="text-link">Safe AI Forum</a>,
+            researching international agreements on AI, and a
+            <a href="https://futureimpact.group/" target="_blank" class="text-link">FIG</a>
+            Fellow at
+            <a href="https://www.forethought.org/" target="_blank" class="text-link">Forethought</a>
+            thinking about post-AGI futures.
+            <br><br>
+            I also recently co-founded
+            <a href="https://scheme.zone/" target="_blank" class="text-link">a magazine</a>
+            to house stories from AI's strange frontier.
+          </p>
+
+          <p class="about-text">
+            Why do I care about AI? Because I expect that how we handle its development and deployment will
+            <a href="https://www.forethought.org/research/preparing-for-the-intelligence-explosion" target="_blank" class="text-link"><em>massively</em> influence</a>
+            how the future unfolds.
+          </p>
+
+          <p class="about-text">
+            I am especially interested in figuring out
+            <a href="https://80000hours.org/podcast/episodes/ajeya-cotra-transformative-ai-crunch-time/" target="_blank" class="text-link">how to navigate</a>
+            AI's effects on the most complex parts of our world:
+            <a href="https://www.youtube.com/watch?v=wkPsbwzyOa8" target="_blank" class="text-link">institutions</a>,
+            <a href="https://www.youtube.com/watch?v=Co09gIPF4aQ" target="_blank" class="text-link">geopolitics</a>,
+            <a href="https://80000hours.org/podcast/episodes/tom-davidson-ai-enabled-human-power-grabs/" target="_blank" class="text-link">power</a>,
+            <a href="https://80000hours.org/podcast/episodes/robert-long-eleos-ai-welfare-research/" target="_blank" class="text-link">morality</a>,
+            and
+            <a href="https://80000hours.org/podcast/episodes/will-macaskill-century-in-a-decade-navigating-intelligence-explosion/" target="_blank" class="text-link">so on</a>.
+          </p>
+
+          <p class="about-text">
+            I consider myself part of the
+            <a href="https://forum.effectivealtruism.org/posts/MP9qDZCXMaTJhiJ9u/ea-is-three-radical-ideas-i-want-to-protect" target="_blank" class="text-link">effective altruism</a>
+            and
+            <a href="https://rootsofprogress.org/manifesto/" target="_blank" class="text-link">pro-progress</a>
+            communities.
+          </p>
         </section>
-        
-        
       </div>
-      
+
       <div class="sidebar">
         <div class="sidebar-section">
           <div class="sidebar-label">Contact</div>
@@ -435,7 +546,7 @@
             <span>Signal: benn.96</span>
           </div>
         </div>
-        
+
         <div class="sidebar-section">
           <div class="sidebar-label">Links</div>
           <div class="links">
@@ -444,128 +555,144 @@
             <a href="https://substack.com/@bennorman" target="_blank">Substack</a>
           </div>
         </div>
-        
+
         <div class="sidebar-section">
-          <div class="sidebar-label"><a href="https://www.admonymous.co/ben-norman" target="_blank">Feedback</a></div>
+          <div class="sidebar-label">
+            <a href="https://www.admonymous.co/ben-norman" target="_blank">Feedback</a>
+          </div>
           <p class="feedback-note">I'd be very grateful for any thoughts on what I'm missing or ways to improve! Thanks :)</p>
         </div>
-
       </div>
     </div>
-    
+
     <footer>
       Last updated March 2026
     </footer>
   </div>
-  
+
   <div id="tooltip"></div>
-  
+
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      
-      /* --- THEME TOGGLE LOGIC --- */
-      try {
-        const toggleBtn = document.getElementById('theme-toggle');
-        const body = document.body;
-        
-        const getStoredTheme = () => {
-          try { return localStorage.getItem('theme'); } catch (e) { return null; }
-        };
-        const setStoredTheme = (val) => {
-          try { localStorage.setItem('theme', val); } catch (e) { }
-        };
+    document.addEventListener("DOMContentLoaded", function () {
+      const toggleBtn = document.getElementById("theme-toggle");
+      const body = document.body;
 
-        const savedTheme = getStoredTheme();
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      function getStoredTheme() {
+        try {
+          return localStorage.getItem("theme");
+        } catch (e) {
+          return null;
+        }
+      }
 
-        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-          body.classList.add('dark-mode');
+      function setStoredTheme(value) {
+        try {
+          localStorage.setItem("theme", value);
+        } catch (e) {}
+      }
+
+      const savedTheme = getStoredTheme();
+      const prefersDark = window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+      if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+        body.classList.add("dark-mode");
+      }
+
+      if (toggleBtn) {
+        toggleBtn.addEventListener("click", function () {
+          body.classList.toggle("dark-mode");
+          setStoredTheme(body.classList.contains("dark-mode") ? "dark" : "light");
+        });
+      }
+
+      const fnContent = {};
+      const tooltip = document.getElementById("tooltip");
+      let activeNote = null;
+
+      function showTooltip(el) {
+        const key = el.getAttribute("data-fn");
+        if (!fnContent[key] || !tooltip) return;
+
+        activeNote = el;
+        tooltip.innerHTML = fnContent[key];
+        tooltip.style.display = "block";
+
+        const rect = el.getBoundingClientRect();
+        const tipWidth = Math.min(380, window.innerWidth - 20);
+
+        tooltip.style.maxWidth = tipWidth + "px";
+
+        let left = rect.left - tipWidth / 2 + rect.width / 2;
+
+        if (left < 10) left = 10;
+        if (left + tipWidth > window.innerWidth - 10) {
+          left = window.innerWidth - tipWidth - 10;
         }
 
-      /* --- TOOLTIP & INTERACTIVITY --- */
-      (function() {
-        var fnContent = {
-        };
-        
-        var tooltip = document.getElementById("tooltip");
-        var activeNote = null;
-        
-        function showTooltip(el) {
-          var key = el.getAttribute("data-fn");
-          if (!fnContent[key]) return;
-          activeNote = el;
-          tooltip.innerHTML = fnContent[key];
-          tooltip.style.display = "block";
-          
-          var rect = el.getBoundingClientRect();
-          var tipWidth = Math.min(380, window.innerWidth - 20);
-          tooltip.style.maxWidth = tipWidth + "px";
-          var left = rect.left - tipWidth/2 + rect.width/2;
-          if (left < 10) left = 10;
-          if (left + tipWidth > window.innerWidth - 10) left = window.innerWidth - tipWidth - 10;
-          
-          tooltip.style.left = left + "px";
-          tooltip.style.top = (rect.bottom + 8) + "px";
-          tooltip.style.position = "fixed";
-        }
+        tooltip.style.left = left + "px";
+        tooltip.style.top = rect.bottom + 8 + "px";
+        tooltip.style.position = "fixed";
+      }
 
-        function hideTooltip() {
-          tooltip.style.display = "none";
-          activeNote = null;
-        }
+      function hideTooltip() {
+        if (!tooltip) return;
+        tooltip.style.display = "none";
+        activeNote = null;
+      }
 
-        document.querySelectorAll(".fn").forEach(function(el) {
-          /* Hover for desktop */
-          el.addEventListener("mouseenter", function(e) {
-            showTooltip(this);
-          });
-          
-          el.addEventListener("mouseleave", function(e) {
-            setTimeout(function() {
-              if (!tooltip.matches(":hover")) {
-                hideTooltip();
-              }
-            }, 100);
-          });
+      document.querySelectorAll(".fn").forEach(function (el) {
+        el.addEventListener("mouseenter", function () {
+          showTooltip(this);
+        });
 
-          /* Tap for mobile */
-          el.addEventListener("click", function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            if (activeNote === this && tooltip.style.display === "block") {
+        el.addEventListener("mouseleave", function () {
+          setTimeout(function () {
+            if (!tooltip || !tooltip.matches(":hover")) {
               hideTooltip();
-            } else {
-              showTooltip(this);
             }
-          });
-        });
-        
-        tooltip.addEventListener("mouseleave", function() {
-          hideTooltip();
+          }, 100);
         });
 
-        /* Tap outside tooltip to dismiss on mobile */
-        document.addEventListener("click", function(e) {
-          if (!e.target.classList.contains("fn") && !tooltip.contains(e.target)) {
+        el.addEventListener("click", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          if (activeNote === this && tooltip && tooltip.style.display === "block") {
             hideTooltip();
+          } else {
+            showTooltip(this);
           }
         });
-        
-        var scrollSections = document.querySelectorAll('.scroll-reveal');
-        function checkScroll() {
-          var triggerBottom = window.innerHeight * 0.85;
-          scrollSections.forEach(function(section) {
-            if (section.getBoundingClientRect().top < triggerBottom) {
-              section.classList.add('revealed');
-            }
-          });
-        }
-        checkScroll();
-        window.addEventListener("scroll", checkScroll);
-      })();
+      });
 
+      if (tooltip) {
+        tooltip.addEventListener("mouseleave", hideTooltip);
+      }
+
+      document.addEventListener("click", function (e) {
+        if (!tooltip) return;
+
+        if (!e.target.classList.contains("fn") && !tooltip.contains(e.target)) {
+          hideTooltip();
+        }
+      });
+
+      const scrollSections = document.querySelectorAll(".scroll-reveal");
+
+      function checkScroll() {
+        const triggerBottom = window.innerHeight * 0.85;
+
+        scrollSections.forEach(function (section) {
+          if (section.getBoundingClientRect().top < triggerBottom) {
+            section.classList.add("revealed");
+          }
+        });
+      }
+
+      checkScroll();
+      window.addEventListener("scroll", checkScroll);
     });
   </script>
-  <script async src="https://platform.twitter.com/widgets.js"></script>
 </body>
 </html>
