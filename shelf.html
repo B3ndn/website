@@ -1,1 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Shelf of Favourites — Ben Norman</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      background-color: #F8F9FA;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      color: #1a1a1a;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      --board: #d9d2c6;
+      --board-shadow: rgba(0,0,0,0.06);
+      --spine-ink: #3a372f;
+      --spine-ink-soft: #6f6a5f;
+    }
+
+    ::selection { background: #1a7a9e; color: #F8F9FA; }
+
+    .page-wrapper { margin: 0 auto; }
+
+    .header { padding: 3rem 6rem 2rem; }
+
+    h1 {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 2.5rem;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 0.75rem;
+    }
+
+    .intro {
+      font-size: 0.95rem;
+      font-style: italic;
+      line-height: 1.7;
+      color: #666;
+      max-width: 640px;
+    }
+
+    .main-container { padding: 0 6rem 3.5rem; }
+
+    /* ---- Bookshelf (full width) ---- */
+    .shelf {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      align-content: flex-start;
+      column-gap: 6px;
+      row-gap: 40px;
+      padding-bottom: 40px;
+      background-image: repeating-linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent 184px,
+        var(--board) 184px,
+        var(--board) 186px,
+        var(--board-shadow) 186px,
+        var(--board-shadow) 187px,
+        transparent 187px,
+        transparent 224px
+      );
+    }
+
+    .slot {
+      height: 184px;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .book {
+      width: var(--w, 130px);
+      height: var(--h, 170px);
+      background: var(--c, #ece5d8);
+      border-radius: 2px 2px 0 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 12px;
+      overflow: hidden;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .book:hover,
+    .book:focus-visible {
+      transform: translateY(-6px);
+      outline: none;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.12);
+    }
+
+    .book-title {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 13px;
+      line-height: 1.28;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      text-align: center;
+      color: var(--spine-ink);
+    }
+
+    .book-author {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-style: italic;
+      font-size: 10.5px;
+      line-height: 1.2;
+      text-align: center;
+      color: var(--spine-ink-soft);
+      margin-top: 5px;
+    }
+
+    /* ---- Bottom note ---- */
+    .incomplete {
+      margin-top: 1.25rem;
+      font-size: 0.8rem;
+      font-style: italic;
+      color: #999;
+    }
+
+    /* ---- Theme toggle ---- */
+    .theme-toggle {
+      position: fixed;
+      top: 1.5rem;
+      right: 2rem;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: #1a1a1a;
+      z-index: 10000;
+      opacity: 0.6;
+      transition: all 0.2s;
+      padding: 10px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .theme-toggle:hover { opacity: 1; background-color: rgba(0,0,0,0.05); }
+    .theme-toggle svg { width: 20px; height: 20px; fill: currentColor; pointer-events: none; }
+
+    /* ---- Dark mode ---- */
+    body.dark-mode {
+      background-color: #111111;
+      color: #e0e0e0;
+      --board: #3a342c;
+      --board-shadow: rgba(0,0,0,0.35);
+    }
+
+    body.dark-mode .theme-toggle { color: #e0e0e0; }
+    body.dark-mode .theme-toggle:hover { background-color: rgba(255,255,255,0.1); }
+    body.dark-mode .intro { color: #aaa; }
+    body.dark-mode .incomplete { color: #777; }
+    body.dark-mode ::selection { background: #5ec4db; color: #111; }
+
+    .icon-moon { display: block; }
+    .icon-sun { display: none; }
+    body.dark-mode .icon-moon { display: none; }
+    body.dark-mode .icon-sun { display: block; }
+
+    @media (max-width: 900px) {
+      .header { padding: 2rem 2rem 1.25rem; }
+      .main-container { padding: 0 2rem 2.5rem; }
+      .theme-toggle { top: 1rem; right: 1rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Dark Mode">
+    <svg class="icon-moon" viewBox="0 0 24 24">
+      <path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/>
+    </svg>
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </button>
+
+  <div class="page-wrapper">
+    <div class="header">
+      <h1>Shelf of Favourites</h1>
+      <p class="intro">Pieces of text that helped me determine my most fundamental beliefs about the world. (Note: I don't entirely agree with any of them, that's why they're so great.)</p>
+    </div>
+
+    <div class="main-container">
+      <div class="shelf">
+
+        <div class="slot"><a class="book" style="--w:142px;--h:182px;--c:#e1dad3" href="https://www.21civ.com/" target="_blank" title="21st Century Civilization Curriculum — Richard Ngo" aria-label="21st Century Civilization Curriculum — Richard Ngo"><span class="book-title">21st Century Civilization Curriculum</span><span class="book-author">Richard Ngo</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:137px;--h:175px;--c:#d5e6e2" href="https://www.beren.io/2026-01-07-AI-Monotheism-vs-AI-Polytheism/" target="_blank" title="AI Monotheism vs AI Polytheism — Beren Millidge" aria-label="AI Monotheism vs AI Polytheism — Beren Millidge"><span class="book-title">AI Monotheism vs AI Polytheism</span><span class="book-author">Beren Millidge</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:148px;--h:184px;--c:#cedfcc" href="https://www.nosetgauge.com/p/alignment-and-succession-the-two" target="_blank" title="Alignment &amp; Succession: The Two Bars of Alignment — Rudolf Laine" aria-label="Alignment &amp; Succession: The Two Bars of Alignment — Rudolf Laine"><span class="book-title">Alignment &amp; Succession: The Two Bars of Alignment</span><span class="book-author">Rudolf Laine</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:145px;--h:184px;--c:#e3e4d6" href="https://slatestarcodex.com/2014/06/07/archipelago-and-atomic-communitarianism/" target="_blank" title="Archipelago and Atomic Communitarianism — Scott Alexander" aria-label="Archipelago and Atomic Communitarianism — Scott Alexander"><span class="book-title">Archipelago and Atomic Communitarianism</span><span class="book-author">Scott Alexander</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:127px;--h:161px;--c:#d2dde4" href="https://nickbostrom.com/astronomical/waste.html" target="_blank" title="Astronomical Waste — Nick Bostrom" aria-label="Astronomical Waste — Nick Bostrom"><span class="book-title">Astronomical Waste</span><span class="book-author">Nick Bostrom</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:123px;--h:156px;--c:#cddfd6" href="https://www.goodthoughts.blog/p/beneficentrism" target="_blank" title="Beneficentrism — Richard Y. Chappell" aria-label="Beneficentrism — Richard Y. Chappell"><span class="book-title">Beneficentrism</span><span class="book-author">Richard Y. Chappell</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:146px;--h:184px;--c:#dce5d7" href="https://benthams.substack.com/p/the-bone-chilling-evil-of-factory" target="_blank" title="The Bone-Chilling Evil of Factory Farming — Bentham's Bulldog" aria-label="The Bone-Chilling Evil of Factory Farming — Bentham's Bulldog"><span class="book-title">The Bone-Chilling Evil of Factory Farming</span><span class="book-author">Bentham's Bulldog</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:134px;--h:170px;--c:#e2dfce" href="https://en.wikipedia.org/wiki/The_Case_Against_Education" target="_blank" title="The Case Against Education — Bryan Caplan" aria-label="The Case Against Education — Bryan Caplan"><span class="book-title">The Case Against Education</span><span class="book-author">Bryan Caplan</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:147px;--h:184px;--c:#cfdfe1" href="https://www.grantmulligan.com/p/positive-sum-environmentalism" target="_blank" title="The Case for Positive-Sum Environmentalism — Grant Mulligan" aria-label="The Case for Positive-Sum Environmentalism — Grant Mulligan"><span class="book-title">The Case for Positive-Sum Environmentalism</span><span class="book-author">Grant Mulligan</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:138px;--h:176px;--c:#d7e6db" href="https://www.globalprioritiesinstitute.org/wp-content/uploads/The-Case-for-Strong-Longtermism-GPI-Working-Paper-June-2021-2-2.pdf" target="_blank" title="The Case for Strong Longtermism — Hilary Greaves &amp; William MacAskill" aria-label="The Case for Strong Longtermism — Hilary Greaves &amp; William MacAskill"><span class="book-title">The Case for Strong Longtermism</span><span class="book-author">Hilary Greaves &amp; William MacAskill</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:131px;--h:167px;--c:#d7dece" href="https://www.hyperdimensional.co/p/coming-in-for-a-landing" target="_blank" title="Coming In For A Landing — Dean W. Ball" aria-label="Coming In For A Landing — Dean W. Ball"><span class="book-title">Coming In For A Landing</span><span class="book-author">Dean W. Ball</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:127px;--h:161px;--c:#e4ddd2" href="https://theanarchistlibrary.org/library/donna-haraway-a-cyborg-manifesto" target="_blank" title="A Cyborg Manifesto — Donna Haraway" aria-label="A Cyborg Manifesto — Donna Haraway"><span class="book-title">A Cyborg Manifesto</span><span class="book-author">Donna Haraway</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:137px;--h:175px;--c:#d5e5e3" href="https://slatestarcodex.com/2019/06/03/repost-epistemic-learned-helplessness/" target="_blank" title="Epistemic Learned Helplessness — Scott Alexander" aria-label="Epistemic Learned Helplessness — Scott Alexander"><span class="book-title">Epistemic Learned Helplessness</span><span class="book-author">Scott Alexander</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:143px;--h:183px;--c:#cddece" href="https://www.goodreads.com/book/show/316781.Exploring_the_World_of_Lucid_Dreaming" target="_blank" title="Exploring the World of Lucid Dreaming — Stephen LaBerge" aria-label="Exploring the World of Lucid Dreaming — Stephen LaBerge"><span class="book-title">Exploring the World of Lucid Dreaming</span><span class="book-author">Stephen LaBerge</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:141px;--h:181px;--c:#e2e6d5" href="https://en.wikipedia.org/wiki/From_Counterculture_to_Cyberculture" target="_blank" title="From Counterculture to Cyberculture — Fred Turner" aria-label="From Counterculture to Cyberculture — Fred Turner"><span class="book-title">From Counterculture to Cyberculture</span><span class="book-author">Fred Turner</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:127px;--h:161px;--c:#d2dae3" href="https://www.asimov.press/p/gentle-romance" target="_blank" title="The Gentle Romance — Richard Ngo" aria-label="The Gentle Romance — Richard Ngo"><span class="book-title">The Gentle Romance</span><span class="book-author">Richard Ngo</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:126px;--h:160px;--c:#cedfd9" href="https://en.wikipedia.org/wiki/The_Great_Silence_(short_story)" target="_blank" title="The Great Silence — Ted Chiang" aria-label="The Great Silence — Ted Chiang"><span class="book-title">The Great Silence</span><span class="book-author">Ted Chiang</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:124px;--h:158px;--c:#d9e7d6" href="https://www.paulgraham.com/disagree.html" target="_blank" title="How to Disagree — Paul Graham" aria-label="How to Disagree — Paul Graham"><span class="book-title">How to Disagree</span><span class="book-author">Paul Graham</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:148px;--h:184px;--c:#e1e1ce" href="https://slatestarcodex.com/2014/09/30/i-can-tolerate-anything-except-the-outgroup/" target="_blank" title="I Can Tolerate Anything Except The Outgroup — Scott Alexander" aria-label="I Can Tolerate Anything Except The Outgroup — Scott Alexander"><span class="book-title">I Can Tolerate Anything Except The Outgroup</span><span class="book-author">Scott Alexander</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:147px;--h:184px;--c:#d0dce1" href="https://www.astralcodexten.com/p/in-continued-defense-of-effective" target="_blank" title="In Continued Defense of Effective Altruism — Scott Alexander" aria-label="In Continued Defense of Effective Altruism — Scott Alexander"><span class="book-title">In Continued Defense of Effective Altruism</span><span class="book-author">Scott Alexander</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:119px;--h:151px;--c:#d8e5dd" href="https://www.lesswrong.com/posts/E9xfgJHvs6M55kABD/less-dead" target="_blank" title="Less Dead — Aurelia Song" aria-label="Less Dead — Aurelia Song"><span class="book-title">Less Dead</span><span class="book-author">Aurelia Song</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:129px;--h:163px;--c:#d4e0cc" href="https://www.exclassics.com/martyrdom/mrtintro.htm" target="_blank" title="The Martyrdom of Man — William Winwood Reade" aria-label="The Martyrdom of Man — William Winwood Reade"><span class="book-title">The Martyrdom of Man</span><span class="book-author">William Winwood Reade</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:126px;--h:160px;--c:#e3e0d4" href="https://www.tkm.kit.edu/downloads/TKM1_2011_more_is_different_PWA.pdf" target="_blank" title="More Is Different — Philip W. Anderson" aria-label="More Is Different — Philip W. Anderson"><span class="book-title">More Is Different</span><span class="book-author">Philip W. Anderson</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:134px;--h:170px;--c:#d5e3e3" href="https://www.cold-takes.com/most-important-century/" target="_blank" title="The Most Important Century — Holden Karnofsky" aria-label="The Most Important Century — Holden Karnofsky"><span class="book-title">The Most Important Century</span><span class="book-author">Holden Karnofsky</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:134px;--h:170px;--c:#cbe0cf" href="https://viemccoy.substack.com/p/the-multipolar-singularity" target="_blank" title="The Multipolar Singularity — Vie McCoy" aria-label="The Multipolar Singularity — Vie McCoy"><span class="book-title">The Multipolar Singularity</span><span class="book-author">Vie McCoy</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:127px;--h:161px;--c:#e0e5d6" href="https://vitalik.eth.limo/general/2023/11/27/techno_optimism.html" target="_blank" title="My Techno-Optimism — Vitalik Buterin" aria-label="My Techno-Optimism — Vitalik Buterin"><span class="book-title">My Techno-Optimism</span><span class="book-author">Vitalik Buterin</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:122px;--h:154px;--c:#e1dad2" href="https://www.gutenberg.org/ebooks/2434" target="_blank" title="New Atlantis — Francis Bacon" aria-label="New Atlantis — Francis Bacon"><span class="book-title">New Atlantis</span><span class="book-author">Francis Bacon</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:129px;--h:164px;--c:#cde1dd" href="https://borretti.me/article/on-vulgar-materialism" target="_blank" title="On Vulgar Materialism — Fernando Borretti" aria-label="On Vulgar Materialism — Fernando Borretti"><span class="book-title">On Vulgar Materialism</span><span class="book-author">Fernando Borretti</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:145px;--h:184px;--c:#d7e6d7" href="https://joecarlsmith.com/2024/01/02/otherness-and-control-in-the-age-of-agi/" target="_blank" title="Otherness and Control in the Age of AGI — Joe Carlsmith" aria-label="Otherness and Control in the Age of AGI — Joe Carlsmith"><span class="book-title">Otherness and Control in the Age of AGI</span><span class="book-author">Joe Carlsmith</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:123px;--h:155px;--c:#dde0ce" href="https://en.wikipedia.org/wiki/Pale_Blue_Dot_(book)" target="_blank" title="Pale Blue Dot — Carl Sagan" aria-label="Pale Blue Dot — Carl Sagan"><span class="book-title">Pale Blue Dot</span><span class="book-author">Carl Sagan</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:137px;--h:175px;--c:#d2dbe1" href="https://www.goodreads.com/book/show/38452905-the-pragmatist-s-guide-to-life" target="_blank" title="The Pragmatist's Guide to Life — Simone &amp; Malcolm Collins" aria-label="The Pragmatist's Guide to Life — Simone &amp; Malcolm Collins"><span class="book-title">The Pragmatist's Guide to Life</span><span class="book-author">Simone &amp; Malcolm Collins</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:145px;--h:184px;--c:#d6e6df" href="https://www.goodreads.com/book/show/54588456-the-pragmatist-s-guide-to-relationships" target="_blank" title="The Pragmatist's Guide to Relationships — Simone &amp; Malcolm Collins" aria-label="The Pragmatist's Guide to Relationships — Simone &amp; Malcolm Collins"><span class="book-title">The Pragmatist's Guide to Relationships</span><span class="book-author">Simone &amp; Malcolm Collins</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:126px;--h:160px;--c:#d1dfcc" href="https://en.wikipedia.org/wiki/The_Scout_Mindset" target="_blank" title="The Scout Mindset — Julia Galef" aria-label="The Scout Mindset — Julia Galef"><span class="book-title">The Scout Mindset</span><span class="book-author">Julia Galef</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:127px;--h:161px;--c:#e3e2d5" href="https://www.planned-obsolescence.org/p/self-sufficient-ai" target="_blank" title="Self-Sufficient AI — Ajeya Cotra" aria-label="Self-Sufficient AI — Ajeya Cotra"><span class="book-title">Self-Sufficient AI</span><span class="book-author">Ajeya Cotra</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:148px;--h:184px;--c:#d3e1e4" href="https://www.beren.io/2025-11-22-Space-Warfare-Seems-Mostly-Defense-Dominant/" target="_blank" title="Space Warfare Seems Mostly Defense Dominant — Beren Millidge" aria-label="Space Warfare Seems Mostly Defense Dominant — Beren Millidge"><span class="book-title">Space Warfare Seems Mostly Defense Dominant</span><span class="book-author">Beren Millidge</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:144px;--h:184px;--c:#ccdfd3" href="https://deathisbad.substack.com/p/stone-age-billionaire-cant-words" target="_blank" title="Stone Age Billionaire Can't Words Good — Eneasz Brodski" aria-label="Stone Age Billionaire Can't Words Good — Eneasz Brodski"><span class="book-title">Stone Age Billionaire Can't Words Good</span><span class="book-author">Eneasz Brodski</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:124px;--h:158px;--c:#dee5d7" href="https://blog.cosmos-institute.org/p/technocalvinism" target="_blank" title="Technocalvinism — Luke Drago" aria-label="Technocalvinism — Luke Drago"><span class="book-title">Technocalvinism</span><span class="book-author">Luke Drago</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:136px;--h:174px;--c:#e2dccf" href="https://rootsofprogress.org/manifesto/" target="_blank" title="The Techno-Humanist Manifesto — Jason Crawford" aria-label="The Techno-Humanist Manifesto — Jason Crawford"><span class="book-title">The Techno-Humanist Manifesto</span><span class="book-author">Jason Crawford</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:135px;--h:173px;--c:#cee1e0" href="https://www.nosetgauge.com/p/the-technology-of-liberalism" target="_blank" title="The Technology of Liberalism — Rudolf Laine" aria-label="The Technology of Liberalism — Rudolf Laine"><span class="book-title">The Technology of Liberalism</span><span class="book-author">Rudolf Laine</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:135px;--h:173px;--c:#d7e6d9" href="https://acotra.substack.com/p/til-death-or-the-singularity" target="_blank" title="Til Death or the Singularity — Ajeya Cotra" aria-label="Til Death or the Singularity — Ajeya Cotra"><span class="book-title">Til Death or the Singularity</span><span class="book-author">Ajeya Cotra</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:142px;--h:182px;--c:#dadfce" href="https://www.lesswrong.com/posts/Aud7CL7uhz55KL8jG/transhumanism-as-simplified-humanism" target="_blank" title="Transhumanism as Simplified Humanism — Eliezer Yudkowsky" aria-label="Transhumanism as Simplified Humanism — Eliezer Yudkowsky"><span class="book-title">Transhumanism as Simplified Humanism</span><span class="book-author">Eliezer Yudkowsky</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:138px;--h:176px;--c:#d1d9e3" href="https://www.econlib.org/library/Essays/hykKnw.html" target="_blank" title="The Use of Knowledge in Society — Friedrich A. Hayek" aria-label="The Use of Knowledge in Society — Friedrich A. Hayek"><span class="book-title">The Use of Knowledge in Society</span><span class="book-author">Friedrich A. Hayek</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:133px;--h:169px;--c:#d6e5e1" href="https://dokumen.pub/a-nick-land-reader-selected-writings-1nbsped.html" target="_blank" title="Utilitarianism is Useless — Nick Land" aria-label="Utilitarianism is Useless — Nick Land"><span class="book-title">Utilitarianism is Useless</span><span class="book-author">Nick Land</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:126px;--h:160px;--c:#cfdecd" href="https://en.wikipedia.org/wiki/A_Wrinkle_in_Time" target="_blank" title="A Wrinkle in Time — Madeleine L'Engle" aria-label="A Wrinkle in Time — Madeleine L'Engle"><span class="book-title">A Wrinkle in Time</span><span class="book-author">Madeleine L'Engle</span></a></div>
+
+        <div class="slot"><a class="book" style="--w:134px;--h:171px;--c:#e5e5d4" href="https://sl4.org/archive/0411/10322.html" target="_blank" title="Yehuda Yudkowsky, 1985-2004 — Eliezer Yudkowsky" aria-label="Yehuda Yudkowsky, 1985-2004 — Eliezer Yudkowsky"><span class="book-title">Yehuda Yudkowsky, 1985-2004</span><span class="book-author">Eliezer Yudkowsky</span></a></div>
+
+      </div>
+
+      <p class="incomplete">(this list is incomplete)</p>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const toggleBtn = document.getElementById("theme-toggle");
+      const body = document.body;
+
+      function getStoredTheme() {
+        try { return localStorage.getItem("theme"); } catch (e) { return null; }
+      }
+      function setStoredTheme(value) {
+        try { localStorage.setItem("theme", value); } catch (e) {}
+      }
+
+      const savedTheme = getStoredTheme();
+      const prefersDark = window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+      if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+        body.classList.add("dark-mode");
+      }
+
+      if (toggleBtn) {
+        toggleBtn.addEventListener("click", function () {
+          body.classList.toggle("dark-mode");
+          setStoredTheme(body.classList.contains("dark-mode") ? "dark" : "light");
+        });
+      }
+    });
+  </script>
+</body>
+</html>
