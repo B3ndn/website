@@ -463,6 +463,24 @@
         right: 1rem;
       }
     }
+    .click-ripple {
+      position: fixed;
+      width: 0;
+      height: 0;
+      border: 1px solid #1a7a9e;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 9999;
+      animation: click-ripple 3s cubic-bezier(0.3, 0.4, 0.4, 1) both;
+    }
+
+    body.dark-mode .click-ripple { border-color: #5ec4db; }
+
+    @keyframes click-ripple {
+      from { width: 0; height: 0; opacity: var(--o, 0.5); }
+      to { width: var(--d, 300vmax); height: var(--d, 300vmax); opacity: 0; }
+    }
   </style>
 </head>
 
@@ -682,6 +700,33 @@
 
       checkScroll();
       window.addEventListener("scroll", checkScroll);
+
+      const reducedMotion = window.matchMedia &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      document.addEventListener("click", function (e) {
+        if (reducedMotion) return;
+        if (e.target.closest("a, button, .fn, #tooltip")) return;
+
+        const d = 2 * Math.hypot(
+          Math.max(e.clientX, window.innerWidth - e.clientX),
+          Math.max(e.clientY, window.innerHeight - e.clientY)
+        );
+
+        for (let i = 0; i < 3; i++) {
+          const ring = document.createElement("div");
+          ring.className = "click-ripple";
+          ring.style.left = e.clientX + "px";
+          ring.style.top = e.clientY + "px";
+          ring.style.animationDelay = (i * 0.28) + "s";
+          ring.style.setProperty("--o", (0.32 - i * 0.09).toFixed(2));
+          ring.style.setProperty("--d", Math.ceil(d) + "px");
+          document.body.appendChild(ring);
+          ring.addEventListener("animationend", function () {
+            ring.remove();
+          });
+        }
+      });
     });
   </script>
 </body>
