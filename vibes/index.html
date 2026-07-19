@@ -81,15 +81,14 @@
       let floor = 0; // rises as images land, so older images always sit above newer ones
       let i = 0;
       let interval = setInterval(() => {
-        let height = 600;
+        let band = 80; // try to land just below the floor; widen only when there's no room
         let [w, h] = pairs[i];
         while (1) {
           let found_place = false;
           let w_max = screen_width - w;
-          let h_max = Math.max(0, height - h);
           for (let _ = 0; _ < 50; _++) {
             let a_left = Math.random() * w_max;
-            let a_top = floor + Math.random() * h_max;
+            let a_top = floor + Math.random() * band;
             let a_right = a_left + w;
             let a_bottom = a_top + h;
 
@@ -127,7 +126,7 @@
           if (found_place) {
             break;
           } else {
-            height += 50;
+            band += 50;
           }
         }
 
