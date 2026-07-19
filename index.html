@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ben Norman</title>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
@@ -13,8 +12,9 @@
 
     body {
       min-height: 100vh;
+      display: flex;
       background-color: #F8F9FA;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      font-family: 'Times New Roman', Times, serif;
       color: #1a1a1a;
       transition: background-color 0.3s ease, color 0.3s ease;
       -webkit-font-smoothing: antialiased;
@@ -23,111 +23,62 @@
 
     ::selection { background: #1a7a9e; color: #F8F9FA; }
 
-    .page-wrapper {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .header {
-      padding: 3rem 6rem 1.5rem;
-    }
-
     h1 {
-      font-family: 'EB Garamond', Georgia, serif;
-      font-size: 2.5rem;
+      font-size: 2.25rem;
       font-weight: 400;
-      letter-spacing: -0.02em;
-      line-height: 1.15;
-      margin-bottom: 0.5rem;
+      text-align: center;
+      letter-spacing: -0.01em;
+      margin-bottom: 2.25rem;
     }
 
-    .location {
-      font-size: 0.85rem;
-      font-style: italic;
-      color: #888;
-    }
-
-    .main-container {
-      display: flex;
-      padding: 0 6rem 0;
-      gap: 6rem;
-    }
-
-    .main-content { flex: 1; }
-
-    .sidebar {
-      width: 300px;
-      flex-shrink: 0;
-    }
-
-    .sidebar-section { margin-bottom: 2rem; }
-
-    .sidebar-label {
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #1a7a9e;
-      margin-bottom: 1rem;
-    }
-
-    .sidebar-label a {
-      color: #1a7a9e;
-      text-decoration: none;
-    }
-
-    .sidebar-label a:hover { opacity: 0.7; }
-
-    .links {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .links a,
-    .links span {
-      color: #1a1a1a;
-      text-decoration: none;
-      font-size: 0.875rem;
-      width: fit-content;
-    }
-
-    .links a:hover { opacity: 0.7; }
-
-    .feedback-note {
-      font-size: 0.85rem;
-      color: #666;
-      line-height: 1.6;
-      margin-top: 0.5rem;
-    }
-
-    .section { margin-bottom: 2.5rem; }
-
-    .section-label {
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #1a7a9e;
-      margin-bottom: 1.25rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .section-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(to right, #1a7a9e, transparent);
+    /* margin: auto on the container inside a flex body centers it
+       vertically and horizontally, and degrades to normal scrolling
+       when content is taller than the viewport */
+    .container {
+      margin: auto;
+      width: 100%;
+      max-width: 720px;
+      padding: 3rem 1.5rem;
     }
 
     .about-text {
-      font-size: 0.925rem;
-      line-height: 1.75;
-      color: #444;
+      font-size: 1.125rem;
+      line-height: 1.7;
+      color: #333;
       margin-bottom: 1.25rem;
-      font-weight: 400;
+    }
+
+    .about-text:last-of-type { margin-bottom: 0; }
+
+    .about-text.list-intro { margin-bottom: 0.6rem; }
+
+    .about-list {
+      list-style-type: disc;
+      padding-left: 1.4rem;
+      margin-bottom: 1.25rem;
+      font-size: 1.125rem;
+      line-height: 1.7;
+      color: #333;
+    }
+
+    .about-list li { margin-bottom: 0.3rem; }
+
+    .about-figure {
+      margin: 1.75rem 0;
+    }
+
+    .about-figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .about-figure figcaption {
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+      font-style: italic;
+      color: #999;
+      text-align: center;
     }
 
     .text-link {
@@ -137,207 +88,28 @@
 
     .text-link:hover { opacity: 0.7; }
 
-    .fn {
-      color: #1a7a9e;
-      cursor: pointer;
-      font-size: 0.7em;
-      vertical-align: super;
-    }
-
-    .fn:hover { text-decoration: underline; }
-
-    #tooltip {
-      display: none;
-      position: fixed;
-      background: #fff;
-      border: 1px solid #ccc;
-      padding: 12px 14px;
-      border-radius: 6px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-      z-index: 999999;
-      max-width: 380px;
-      font-size: 0.85rem;
-      color: #444;
-      line-height: 1.6;
-    }
-
-    #tooltip ul {
-      margin: 8px 0 0 0;
-      padding-left: 20px;
-      list-style-type: disc;
-    }
-
-    #tooltip li { margin-bottom: 4px; }
-    #tooltip a { color: #1a7a9e; }
-
-    .card {
-      padding: 1rem 0;
-      border-bottom: 1px solid rgba(0,0,0,0.06);
-      position: relative;
-    }
-
-    .card-header {
+    .links-row {
       display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem 2.25rem;
+      margin-top: 2.5rem;
     }
 
-    .card-title {
-      font-size: 0.95rem;
-      font-weight: 500;
-    }
-
-    .card-org {
-      font-size: 0.9rem;
+    .links-row a {
       color: #1a7a9e;
       text-decoration: none;
+      font-size: 1.0625rem;
     }
 
-    .card-org:hover { opacity: 0.7; }
-
-    .card-period {
-      font-size: 0.825rem;
-      color: #999;
-      white-space: nowrap;
-    }
-
-    .card-desc {
-      font-size: 0.875rem;
-      color: #666;
-      line-height: 1.6;
-      margin-top: 0.5rem;
-    }
-
-    .card-desc ul {
-      list-style-type: disc;
-      padding-left: 1.25rem;
-      margin: 0;
-    }
-
-    .card-desc li { margin-bottom: 0.25rem; }
-
-    .card-desc a {
-      color: #1a7a9e;
-      text-decoration: none;
-    }
-
-    .card-desc a:hover { opacity: 0.7; }
-
-    .collapsible-header {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .collapsible-header .toggle {
-      font-size: 1rem;
-      color: #1a7a9e;
-      width: 1rem;
-      transition: transform 0.2s ease;
-    }
-
-    .collapsible-header.open .toggle { transform: rotate(45deg); }
-
-    .collapsible-content {
-      display: none;
-      margin-top: 1rem;
-    }
-
-    .collapsible-content.open { display: block; }
-
-    .norm-item {
-      margin-bottom: 0.6rem;
-      position: relative;
-    }
-
-    .norm-title {
-      font-size: 0.9rem;
-      font-weight: 500;
-      cursor: default;
-    }
-
-    .norm-desc {
-      display: none;
-      font-size: 0.8rem;
-      color: #666;
-      line-height: 1.5;
-      margin-top: 0.25rem;
-      padding-left: 0.5rem;
-      border-left: 2px solid #1a7a9e;
-    }
-
-    .norm-item:hover .norm-desc { display: block; }
-
-    .scroll-reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    }
-
-    .scroll-reveal.revealed {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .reading-ticker {
-      position: relative;
-      min-height: 3.5rem;
-    }
-
-    .ticker-item {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      opacity: 0;
-      transform: translateY(6px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-      pointer-events: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.2rem;
-    }
-
-    .ticker-item.active {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-    }
-
-    .ticker-type {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: #999;
-    }
-
-    .ticker-title {
-      font-size: 0.875rem;
-      color: #1a1a1a;
-      text-decoration: none;
-      line-height: 1.4;
-    }
-
-    a.ticker-title:hover { opacity: 0.7; }
-
-    .ticker-author {
-      font-size: 0.78rem;
-      color: #999;
-      font-style: italic;
-    }
-
-    body.dark-mode .ticker-title { color: #e0e0e0; }
-    body.dark-mode .ticker-type { color: #777; }
-    body.dark-mode .ticker-author { color: #777; }
+    .links-row a:hover { opacity: 0.7; }
 
     footer {
-      padding: 1.5rem 6rem 2rem;
-      font-size: 0.7rem;
-      color: #999;
+      margin-top: 3rem;
+      font-size: 0.8rem;
       font-style: italic;
+      color: #999;
+      text-align: center;
     }
 
     .theme-toggle {
@@ -375,58 +147,21 @@
       color: #e0e0e0;
     }
 
-    body.dark-mode .theme-toggle {
-      color: #e0e0e0;
-    }
+    body.dark-mode .theme-toggle { color: #e0e0e0; }
 
     body.dark-mode .theme-toggle:hover {
       background-color: rgba(255,255,255,0.1);
     }
 
-    body.dark-mode .sidebar-label,
-    body.dark-mode .sidebar-label a,
-    body.dark-mode .section-label,
     body.dark-mode .text-link,
-    body.dark-mode .fn,
-    body.dark-mode .card-org,
-    body.dark-mode .card-desc a,
-    body.dark-mode .collapsible-header .toggle,
-    body.dark-mode .norm-desc {
+    body.dark-mode .links-row a {
       color: #5ec4db;
     }
 
-    body.dark-mode .section-label::after {
-      background: linear-gradient(to right, #5ec4db, transparent);
-    }
-
-    body.dark-mode .links a,
-    body.dark-mode .links span {
-      color: #e0e0e0;
-    }
-
-    body.dark-mode .about-text { color: #ccc; }
-
-    body.dark-mode .location,
-    body.dark-mode .feedback-note,
-    body.dark-mode .card-desc,
-    body.dark-mode .norm-desc {
-      color: #aaa;
-    }
-
-    body.dark-mode .card {
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-
-    body.dark-mode #tooltip {
-      background: #1c1c1c;
-      border: 1px solid #333;
-      color: #ccc;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.5);
-    }
-
-    body.dark-mode #tooltip a {
-      color: #5ec4db;
-    }
+    body.dark-mode .about-text,
+    body.dark-mode .about-list { color: #ccc; }
+    body.dark-mode footer { color: #777; }
+    body.dark-mode .about-figure figcaption { color: #777; }
 
     body.dark-mode ::selection {
       background: #5ec4db;
@@ -439,30 +174,6 @@
     body.dark-mode .icon-moon { display: none; }
     body.dark-mode .icon-sun { display: block; }
 
-    @media (max-width: 900px) {
-      .main-container {
-        flex-direction: column;
-        padding: 0 2rem 2rem;
-        gap: 2rem;
-      }
-
-      .header {
-        padding: 2rem 2rem 1rem;
-      }
-
-      .sidebar {
-        width: 100%;
-      }
-
-      footer {
-        padding: 1rem 2rem;
-      }
-
-      .theme-toggle {
-        top: 1rem;
-        right: 1rem;
-      }
-    }
     .click-ripple {
       position: fixed;
       width: 0;
@@ -480,6 +191,17 @@
     @keyframes click-ripple {
       from { width: 0; height: 0; opacity: var(--o, 0.5); }
       to { width: var(--d, 300vmax); height: var(--d, 300vmax); opacity: 0; }
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 4.5rem 1.25rem 2.5rem; }
+
+      .links-row { gap: 0.75rem 1.5rem; }
+
+      .theme-toggle {
+        top: 1rem;
+        right: 1rem;
+      }
     }
   </style>
 </head>
@@ -503,80 +225,40 @@
     </svg>
   </button>
 
-  <div class="page-wrapper">
-    <div class="header">
-      <h1>Ben Norman</h1>
-      <p class="location">London, UK</p>
-    </div>
+  <main class="container">
+    <h1>Ben Norman</h1>
 
-    <div class="main-container">
-      <div class="main-content">
-        <section class="section">
-          <p class="about-text">Hi, I'm Ben!</p>
+    <p class="about-text">Hi, I'm Ben!</p>
 
-          <p class="about-text">
-            I'm currently a Visiting Researcher at the
-            <a href="https://saif.org/" target="_blank" class="text-link">Safe AI Forum</a>,
-            researching potential international agreements to reduce catastrophic AI risks.
-            <br><br>
-            Previously:
-            <a href="https://futureimpact.group/" target="_blank" class="text-link">FIG</a>
-            Fellow at
-            <a href="https://www.forethought.org/" target="_blank" class="text-link">Forethought</a>
-            thinking about post-AGI futures,
-            undergraduate BASc student at the
-            <a href="https://en.wikipedia.org/wiki/London_Interdisciplinary_School" target="_blank" class="text-link">London Interdisciplinary School</a>.
-          </p>
+    <p class="about-text">I care most about the following things: <a href="https://www.forethought.org/research/preparing-for-the-intelligence-explosion" target="_blank" class="text-link">transformative AI</a> going well, <a href="https://en.wikipedia.org/wiki/Pluralism_(political_philosophy)" target="_blank" class="text-link">pluralism</a>, <a href="https://en.wikipedia.org/wiki/Liberty" target="_blank" class="text-link">liberty</a>, <a href="https://forum.effectivealtruism.org/posts/MP9qDZCXMaTJhiJ9u/ea-is-three-radical-ideas-i-want-to-protect" target="_blank" class="text-link">effective altruism</a>, <a href="https://www.givingwhatwecan.org/blog/how-to-end-factory-farming" target="_blank" class="text-link">ending unnecessary animal suffering</a>, and <a href="https://rootsofprogress.org/manifesto/" target="_blank" class="text-link">civilisational progress</a>.</p>
 
-          <p class="about-text">
-            I care about AI because I expect it to
-            <a href="https://www.forethought.org/research/preparing-for-the-intelligence-explosion" target="_blank" class="text-link">massively influence</a>
-            how the future (both near-term and long-term) unfolds.<span class="fn" data-fn="navigate">[1]</span> I want to do what I can to help ensure it goes well.
-          </p>
+    <figure class="about-figure">
+      <img src="takimunk-forest.png" alt="Print of tall pines on a flowering hillside, looking out over a calm sea with the moon low on the horizon">
+      <figcaption>Image credit: <a href="https://x.com/takimunk/status/2052182121851056514?s=20" target="_blank" class="text-link">@takimunk</a></figcaption>
+    </figure>
 
-          <p class="about-text">
-            I consider myself part of the
-            <a href="https://forum.effectivealtruism.org/posts/MP9qDZCXMaTJhiJ9u/ea-is-three-radical-ideas-i-want-to-protect" target="_blank" class="text-link">effective altruism</a>
-            and
-            <a href="https://rootsofprogress.org/manifesto/" target="_blank" class="text-link">pro-progress</a>
-            communities.
-          </p>
-        </section>
-      </div>
+    <p class="about-text list-intro">I'm currently spending most of my time working on the following projects:</p>
+    <ul class="about-list">
+      <li>Researching prospects for international coordination on AI at the <a href="https://saif.org/" target="_blank" class="text-link">Safe AI Forum</a>.</li>
+      <li>Figuring out how to accelerate AI tools for epistemics and coordination at <a href="https://www.forethought.org/" target="_blank" class="text-link">Forethought</a>.</li>
+      <li>Finishing my undergraduate degree at the <a href="https://en.wikipedia.org/wiki/London_Interdisciplinary_School" target="_blank" class="text-link">London Interdisciplinary School</a>.</li>
+    </ul>
 
-      <div class="sidebar">
-        <div class="sidebar-section">
-          <div class="sidebar-label">Contact</div>
-          <div class="links">
-            <span>Email: bendnorman[at]protonmail.com</span>
-            <span>Signal: benn.96</span>
-          </div>
-        </div>
+    <p class="about-text">If you have similar interests, care about similar things, or have good reasons to believe I'm prioritising the wrong things, please have a low bar for getting in touch! :)</p>
 
-        <div class="sidebar-section">
-          <div class="sidebar-label">Links</div>
-          <div class="links">
-            <a href="https://www.linkedin.com/in/ben-d-norman/" target="_blank">LinkedIn</a>
-            <a href="https://x.com/ben_d_norman" target="_blank">X</a>
-            <a href="https://substack.com/@bennorman" target="_blank">Substack</a>
-          </div>
-        </div>
-
-        <div class="sidebar-section">
-          <div class="sidebar-label">
-            <a href="https://www.admonymous.co/ben-norman" target="_blank">Feedback</a>
-          </div>
-          <p class="feedback-note">I'd be very grateful for any thoughts on what I'm missing or ways to improve! Thanks :)</p>
-        </div>
-      </div>
-    </div>
+    <nav class="links-row" aria-label="Links">
+      <a href="https://x.com/ben_d_norman" target="_blank">X</a>
+      <a href="https://substack.com/@bennorman" target="_blank">Substack</a>
+      <a href="#" id="email-link">Email</a>
+      <a href="https://www.linkedin.com/in/ben-d-norman/" target="_blank">LinkedIn</a>
+      <a href="https://www.admonymous.co/ben-norman" target="_blank">Feedback</a>
+      <a href="vibes.html">Vibes</a>
+    </nav>
 
     <footer>
       Last updated June 2026
     </footer>
-  </div>
-
-  <div id="tooltip"></div>
+  </main>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -612,101 +294,21 @@
         });
       }
 
-      const fnContent = {
-        navigate: 'I\'m especially interested in figuring out <a href="https://80000hours.org/podcast/episodes/ajeya-cotra-transformative-ai-crunch-time/" target="_blank">how to navigate</a> AI\'s effects on the most complex parts of our world: <a href="https://www.youtube.com/watch?v=wkPsbwzyOa8" target="_blank">institutions</a>, <a href="https://www.youtube.com/watch?v=Co09gIPF4aQ" target="_blank">geopolitics</a>, <a href="https://80000hours.org/podcast/episodes/tom-davidson-ai-enabled-human-power-grabs/" target="_blank">power</a>, <a href="https://80000hours.org/podcast/episodes/robert-long-eleos-ai-welfare-research/" target="_blank">morality</a>, and <a href="https://80000hours.org/podcast/episodes/will-macaskill-century-in-a-decade-navigating-intelligence-explosion/" target="_blank">so on</a>.'
-      };
-      const tooltip = document.getElementById("tooltip");
-      let activeNote = null;
-
-      function showTooltip(el) {
-        const key = el.getAttribute("data-fn");
-        if (!fnContent[key] || !tooltip) return;
-
-        activeNote = el;
-        tooltip.innerHTML = fnContent[key];
-        tooltip.style.display = "block";
-
-        const rect = el.getBoundingClientRect();
-        const tipWidth = Math.min(380, window.innerWidth - 20);
-
-        tooltip.style.maxWidth = tipWidth + "px";
-
-        let left = rect.left - tipWidth / 2 + rect.width / 2;
-
-        if (left < 10) left = 10;
-        if (left + tipWidth > window.innerWidth - 10) {
-          left = window.innerWidth - tipWidth - 10;
-        }
-
-        tooltip.style.left = left + "px";
-        tooltip.style.top = rect.bottom + 8 + "px";
-        tooltip.style.position = "fixed";
+      // Assemble the mailto link at runtime so the plain address
+      // never appears in the page source (same spirit as [at])
+      const emailLink = document.getElementById("email-link");
+      if (emailLink) {
+        const user = "bendnorman";
+        const domain = "protonmail" + "." + "com";
+        emailLink.setAttribute("href", "mailto:" + user + "@" + domain);
       }
-
-      function hideTooltip() {
-        if (!tooltip) return;
-        tooltip.style.display = "none";
-        activeNote = null;
-      }
-
-      document.querySelectorAll(".fn").forEach(function (el) {
-        el.addEventListener("mouseenter", function () {
-          showTooltip(this);
-        });
-
-        el.addEventListener("mouseleave", function () {
-          setTimeout(function () {
-            if (!tooltip || !tooltip.matches(":hover")) {
-              hideTooltip();
-            }
-          }, 100);
-        });
-
-        el.addEventListener("click", function (e) {
-          e.preventDefault();
-          e.stopPropagation();
-
-          if (activeNote === this && tooltip && tooltip.style.display === "block") {
-            hideTooltip();
-          } else {
-            showTooltip(this);
-          }
-        });
-      });
-
-      if (tooltip) {
-        tooltip.addEventListener("mouseleave", hideTooltip);
-      }
-
-      document.addEventListener("click", function (e) {
-        if (!tooltip) return;
-
-        if (!e.target.classList.contains("fn") && !tooltip.contains(e.target)) {
-          hideTooltip();
-        }
-      });
-
-      const scrollSections = document.querySelectorAll(".scroll-reveal");
-
-      function checkScroll() {
-        const triggerBottom = window.innerHeight * 0.85;
-
-        scrollSections.forEach(function (section) {
-          if (section.getBoundingClientRect().top < triggerBottom) {
-            section.classList.add("revealed");
-          }
-        });
-      }
-
-      checkScroll();
-      window.addEventListener("scroll", checkScroll);
 
       const reducedMotion = window.matchMedia &&
         window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
       document.addEventListener("click", function (e) {
         if (reducedMotion) return;
-        if (e.target.closest("a, button, .fn, #tooltip")) return;
+        if (e.target.closest("a, button")) return;
 
         const d = 2 * Math.hypot(
           Math.max(e.clientX, window.innerWidth - e.clientX),
