@@ -10,7 +10,8 @@ except ImportError as e:
     import sys; sys.exit(1);
 
 files = []
-for file in os.listdir("."):
+# oldest first, so the page can show images in the order they were added
+for file in sorted(os.listdir("."), key=os.path.getmtime):
     try:
         im = Image.open(file)
         files.append([file, [im.width, im.height]])

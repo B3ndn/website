@@ -36,15 +36,8 @@
   <script>
     // Image-scatter approach from sophiawisdom's screenshot hoster:
     // https://gist.github.com/sophiawisdom/c1b16fcaca017d1aec2358c6fb619697
-    // (adapted: px units for standards mode, guard against negative placement range)
-
-    function shuffleArray(array) {
-      for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-      }
-      return array;
-    }
+    // (adapted: px units for standards mode, guard against negative placement range,
+    //  no shuffle + rising placement floor so images appear oldest-first down the page)
 
     const container = document.getElementById("container");
 
@@ -54,7 +47,7 @@
       }
       return f.json();
     }).then(data => {
-      let key_values = shuffleArray(data);
+      let key_values = data; // already chronological — lister.py sorts oldest-first
 
       const rect = container.getBoundingClientRect();
       let screen_width = rect.width;
@@ -85,6 +78,7 @@
       // Dumb-but-fun placement: try random spots, retry on overlap,
       // grow the page taller when a spot can't be found.
       let positions = [];
+      let floor = 0; // rises as images land, so older images always sit above newer ones
       let i = 0;
       let interval = setInterval(() => {
         let height = 600;
@@ -95,7 +89,7 @@
           let h_max = Math.max(0, height - h);
           for (let _ = 0; _ < 50; _++) {
             let a_left = Math.random() * w_max;
-            let a_top = Math.random() * h_max;
+            let a_top = floor + Math.random() * h_max;
             let a_right = a_left + w;
             let a_bottom = a_top + h;
 
@@ -126,6 +120,7 @@
             if (!intersects) {
               found_place = true;
               positions.push([parseInt(a_left), parseInt(a_top)]);
+              floor = parseInt(a_top);
               break;
             }
           }
