@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vibes</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: #F8F9FA;
+      font-family: 'Times New Roman', Times, serif;
+      color: #333;
+    }
+
+    .intro {
+      text-align: center;
+      padding: 1.25rem 1rem;
+      font-size: 1rem;
+    }
+
+    .intro a {
+      color: #1a7a9e;
+      text-decoration: none;
+    }
+
+    .intro a:hover { opacity: 0.7; }
+  </style>
+</head>
+
+<body>
+  <p class="intro">inspired by <a href="https://xavicf.com/" target="_blank">xavi</a> and <a href="https://lydia.ml/vibes" target="_blank">lydia</a> - <a href="https://gist.github.com/sophiawisdom/c1b16fcaca017d1aec2358c6fb619697" target="_blank">make your own here</a></p>
+
+  <div id="container"></div>
+
+  <script>
+    // Image-scatter approach from sophiawisdom's screenshot hoster:
+    // https://gist.github.com/sophiawisdom/c1b16fcaca017d1aec2358c6fb619697
+    // (adapted: px units for standards mode, guard against negative placement range)
+
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    const container = document.getElementById("container");
+
+    fetch("image_widths_heights.json").then(f => {
+      if (f.status == 404) {
+        alert("unable to find image_widths_heights.json -- you should run lister.py to create it.");
+      }
+      return f.json();
+    }).then(data => {
+      let key_values = shuffleArray(data);
+
+      const rect = container.getBoundingClientRect();
+      let screen_width = rect.width;
+
+      // Resize wildly different images toward a similar on-screen footprint.
+      // To adjust overall image size, change goal_pixels.
+      const pairs = key_values.map(([key, [w, h]]) => {
+        let goal_pixels = 500 * 300;
+        let actual_pixels = w * h;
+        if (actual_pixels / goal_pixels > 16) {
+          return [parseInt(w / 8), parseInt(h / 8)];
+        }
+        if (actual_pixels / goal_pixels > 4) {
+          return [parseInt(w / 4), parseInt(h / 4)];
+        }
+        return [parseInt(w / 2), parseInt(h / 2)];
+      }).map(([w, h]) => [(w + 10) > screen_width ? screen_width - 10 : w, h]);
+
+      // Gather text nodes so images never cover the intro line
+      const textNodes = [];
+      const treeWalker = document.createTreeWalker(
+        document.body,
+        NodeFilter.SHOW_TEXT,
+        { acceptNode: (node) => node.textContent.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT }
+      );
+      while (treeWalker.nextNode()) textNodes.push(treeWalker.currentNode);
+
+      // Dumb-but-fun placement: try random spots, retry on overlap,
+      // grow the page taller when a spot can't be found.
+      let positions = [];
+      let i = 0;
+      let interval = setInterval(() => {
+        let height = 600;
+        let [w, h] = pairs[i];
+        while (1) {
+          let found_place = false;
+          let w_max = screen_width - w;
+          let h_max = Math.max(0, height - h);
+          for (let _ = 0; _ < 50; _++) {
+            let a_left = Math.random() * w_max;
+            let a_top = Math.random() * h_max;
+            let a_right = a_left + w;
+            let a_bottom = a_top + h;
+
+            let intersects = false;
+            for (let j = 0; j < positions.length; j++) {
+              let [b_left, b_top] = positions[j];
+              let b_right = b_left + pairs[j][0];
+              let b_bottom = b_top + pairs[j][1];
+              if (a_left < b_right && a_right > b_left && a_bottom > b_top && a_top < b_bottom) {
+                intersects = true;
+                break;
+              }
+            }
+
+            for (const node of textNodes) {
+              const range = document.createRange();
+              range.selectNodeContents(node);
+              const nrect = range.getBoundingClientRect();
+              let node_top = nrect.top + window.pageYOffset;
+              let node_left = nrect.left + window.pageXOffset;
+
+              if (a_left < (node_left + nrect.width) && a_right > node_left && a_bottom > node_top && a_top < (node_top + nrect.height)) {
+                intersects = true;
+                break;
+              }
+            }
+
+            if (!intersects) {
+              found_place = true;
+              positions.push([parseInt(a_left), parseInt(a_top)]);
+              break;
+            }
+          }
+          if (found_place) {
+            break;
+          } else {
+            height += 50;
+          }
+        }
+
+        let img = document.createElement("img");
+        img.src = key_values[i][0];
+        img.width = pairs[i][0];
+        img.height = pairs[i][1];
+        img.style.width = pairs[i][0] + "px";
+        img.style.height = pairs[i][1] + "px";
+        img.style.position = "absolute";
+        img.style.top = positions[i][1] + "px";
+        img.style.left = positions[i][0] + "px";
+        img.loading = "lazy";
+        container.appendChild(img);
+
+        i++;
+        if (i == key_values.length) {
+          clearInterval(interval);
+        }
+      }, 100);
+    });
+  </script>
+</body>
+</html>
