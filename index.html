@@ -196,7 +196,7 @@
     }
 
     @media (max-width: 600px) {
-      .container { padding: 4.5rem 1.25rem 2.5rem; }
+      .container { padding: 3.5rem 1.25rem 2.5rem; }
 
       .links-row { gap: 0.75rem 1.5rem; }
 
@@ -231,7 +231,11 @@
     <h1>Ben Norman</h1>
 
     <figure class="about-figure">
-      <img src="takimunk-forest.png" alt="Print of tall pines on a flowering hillside, looking out over a calm sea with the moon low on the horizon">
+      <img src="takimunk-forest.png"
+           srcset="takimunk-forest-1080.webp 1080w, takimunk-forest.png 2136w"
+           sizes="(max-width: 600px) calc(100vw - 2.5rem), 540px"
+           width="2136" height="1572" fetchpriority="high"
+           alt="Print of tall pines on a flowering hillside, looking out over a calm sea with the moon low on the horizon">
       <figcaption>Image credit: <a href="https://x.com/takimunk/status/2052182121851056514?s=20" target="_blank" class="text-link">@takimunk</a></figcaption>
     </figure>
 
