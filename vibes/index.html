@@ -75,6 +75,20 @@
       );
       while (treeWalker.nextNode()) textNodes.push(treeWalker.currentNode);
 
+      // Measure the text once — it never moves, and re-measuring per placement
+      // attempt forces a layout each time, which crawls with hundreds of images.
+      const textRects = textNodes.map(node => {
+        const range = document.createRange();
+        range.selectNodeContents(node);
+        const nrect = range.getBoundingClientRect();
+        return {
+          top: nrect.top + window.pageYOffset,
+          left: nrect.left + window.pageXOffset,
+          width: nrect.width,
+          height: nrect.height
+        };
+      });
+
       // Dumb-but-fun placement: try random spots, retry on overlap,
       // grow the page taller when a spot can't be found.
       let positions = [];
@@ -103,14 +117,8 @@
               }
             }
 
-            for (const node of textNodes) {
-              const range = document.createRange();
-              range.selectNodeContents(node);
-              const nrect = range.getBoundingClientRect();
-              let node_top = nrect.top + window.pageYOffset;
-              let node_left = nrect.left + window.pageXOffset;
-
-              if (a_left < (node_left + nrect.width) && a_right > node_left && a_bottom > node_top && a_top < (node_top + nrect.height)) {
+            for (const nrect of textRects) {
+              if (a_left < (nrect.left + nrect.width) && a_right > nrect.left && a_bottom > nrect.top && a_top < (nrect.top + nrect.height)) {
                 intersects = true;
                 break;
               }
@@ -146,7 +154,7 @@
         if (i == key_values.length) {
           clearInterval(interval);
         }
-      }, 100);
+      }, 30);
     });
   </script>
 </body>
