@@ -106,6 +106,10 @@
 
     .links-row a:hover { opacity: 0.7; }
 
+    /* Vibes is a hidden link: invisible until hovered, and dimmer than the rest */
+    .links-row a.vibes-link { opacity: 0; transition: opacity 0.25s ease; }
+    .links-row a.vibes-link:hover { opacity: 0.55; }
+
     footer {
       margin-top: 3rem;
       font-size: 0.8rem;
@@ -258,7 +262,7 @@
       <a href="#" id="email-link">Email</a>
       <a href="https://www.linkedin.com/in/ben-d-norman/" target="_blank">LinkedIn</a>
       <a href="https://www.admonymous.co/ben-norman" target="_blank">Feedback</a>
-      <a href="vibes/" target="_blank">Vibes</a>
+      <a href="vibes/" target="_blank" class="vibes-link">Vibes</a>
     </nav>
 
     <footer>
