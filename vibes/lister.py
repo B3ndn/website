@@ -9,32 +9,51 @@ try:
 except ImportError as e:
     print("Got import error", e)
     print("You need to install pillow and pillow-heif: `pip3 install pillow pillow-heif`")
-    import sys; sys.exit(1);
+    import sys; sys.exit(1)
 
-files = []
-# oldest first, so the page can show images in the order they were added
-for file in sorted(os.listdir("."), key=os.path.getmtime):
+OUT = "image_widths_heights.json"
+
+# Entries carry [name, [w, h], "YYYY-MM-DD"]. Known files reuse the stored
+# dimensions and day, so old images are never re-opened — iCloud may have
+# evicted their contents from disk (reading those hangs), and git checkouts
+# reset mtimes; the JSON is the durable source of truth for both.
+known = {}
+if os.path.exists(OUT):
+    for entry in json.load(open(OUT)):
+        known[entry[0]] = [entry[1], entry[2] if len(entry) > 2 else None]
+
+entries = []
+for file in os.listdir("."):
+    if file == OUT or not os.path.isfile(file):
+        continue
+    if file in known:
+        dims, day = known[file]
+        if day is None:  # first run after migration: fall back to mtime
+            day = str(date.fromtimestamp(os.path.getmtime(file)))
+        entries.append([file, dims, day])
+        continue
     try:
         im = Image.open(file)
-        files.append([file, [im.width, im.height]])
-    except: # e.g. .DS_Store, calculater.py, file
+        dims = [im.width, im.height]
+    except Exception:  # e.g. .DS_Store, lister.py, index.html
         continue
-# Days stay chronological, but images within a day are shuffled so batches of
-# similar back-to-back screenshots don't cluster. Seeded by date -> stable across runs.
+    entries.append([file, dims, str(date.fromtimestamp(os.path.getmtime(file)))])
+
+# Oldest day first; within a day, shuffle (seeded by the date, so the order is
+# stable across runs) so batches of similar screenshots don't cluster.
+entries.sort(key=lambda e: (e[2], e[0]))
 mixed = []
 day_batch = []
 current_day = None
-for entry in files:
-    d = date.fromtimestamp(os.path.getmtime(entry[0]))
-    if d != current_day:
-        random.Random(str(current_day)).shuffle(day_batch)
+for entry in entries:
+    if entry[2] != current_day:
+        random.Random(current_day).shuffle(day_batch)
         mixed.extend(day_batch)
         day_batch = []
-        current_day = d
+        current_day = entry[2]
     day_batch.append(entry)
-random.Random(str(current_day)).shuffle(day_batch)
+random.Random(current_day).shuffle(day_batch)
 mixed.extend(day_batch)
-files = mixed
 
-json.dump(files, open("image_widths_heights.json", 'w'))
-print(f"Successfully created image_widths_heights.json with {len(files)} files.")
+json.dump(mixed, open(OUT, 'w'))
+print(f"Successfully created {OUT} with {len(mixed)} files.")
