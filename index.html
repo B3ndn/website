@@ -106,19 +106,6 @@
 
     .links-row a:hover { opacity: 0.7; }
 
-    /* Vibes is a hidden link: invisible until hovered, and dimmer than the rest.
-       The .vibes-balance spacer mirrors its width at the row's start so the
-       visible links stay centred. */
-    .links-row a.vibes-link { opacity: 0; transition: opacity 0.25s ease; }
-    .links-row a.vibes-link:hover { opacity: 0.55; }
-    .links-row .vibes-balance { opacity: 0; pointer-events: none; user-select: none; font-size: 1.0625rem; }
-
-    /* No hover on touch screens (and the row wraps unevenly on small ones),
-       so drop the hidden link + spacer from layout there */
-    @media (hover: none), (max-width: 600px) {
-      .links-row a.vibes-link, .links-row .vibes-balance { display: none; }
-    }
-
     footer {
       margin-top: 3rem;
       font-size: 0.8rem;
@@ -266,13 +253,11 @@
     <p class="about-text">If you have similar interests, care about similar things, or have good reasons to believe I'm prioritising the wrong things, please have a low bar for getting in touch! :)</p>
 
     <nav class="links-row" aria-label="Links">
-      <span class="vibes-balance" aria-hidden="true">Vibes</span>
       <a href="https://substack.com/@bennorman" target="_blank">Substack</a>
       <a href="#" id="email-link">Email</a>
       <a href="https://x.com/ben_d_norman" target="_blank">X</a>
       <a href="https://www.linkedin.com/in/ben-d-norman/" target="_blank">LinkedIn</a>
       <a href="https://www.admonymous.co/ben-norman" target="_blank">Feedback</a>
-      <a href="vibes/" target="_blank" class="vibes-link">Vibes</a>
     </nav>
 
     <footer>
