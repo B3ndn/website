@@ -32,7 +32,7 @@
   @supports (height:100dvh){ .lines{height:100dvh} }
   .lines path{fill:none;stroke:url(#fadeL);stroke-linecap:round;vector-effect:non-scaling-stroke}
 
-  .page{position:relative;z-index:1;max-width:calc(46ch + 2*clamp(1.5rem,7vw,6rem));padding:clamp(3rem,10vh,7rem) clamp(1.5rem,7vw,6rem) 4rem}
+  .page{position:relative;z-index:1;margin-left:max(0px,calc((100vw - 1240px)/2));max-width:calc(46ch + 2*clamp(1.5rem,7vw,6rem));padding:clamp(3rem,10vh,7rem) clamp(1.5rem,7vw,6rem) 4rem}
   h1{font-size:clamp(2.6rem,5.5vw,4.2rem);margin:0 0 2.2rem;line-height:1;font-weight:500;letter-spacing:-.015em}
   p{margin:0 0 1.1em}
   ul{margin:0 0 1.1em;padding-left:1.1em}
@@ -41,7 +41,7 @@
   .links a{color:var(--soft)}
   .stamp{color:var(--soft);font-style:italic;font-size:1rem;margin-top:1.6rem}
 
-  #theme{position:fixed;top:1.2rem;left:1.4rem;width:26px;height:26px;padding:0;border:0;background:none;cursor:pointer;color:var(--ink);opacity:.8;z-index:2}
+  #theme{position:fixed;top:1.2rem;left:calc(max(0px,(100vw - 1240px)/2) + 1.4rem);width:26px;height:26px;padding:0;border:0;background:none;cursor:pointer;color:var(--ink);opacity:.8;z-index:2}
   #theme:hover{opacity:1}
   #theme svg{width:100%;height:100%}
   #theme .sun{display:none}
