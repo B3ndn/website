@@ -81,6 +81,68 @@
 </style>
 <link rel="icon" type="image/png" href="/favicon.png?v=3">
 <link rel="shortcut icon" type="image/png" href="/favicon.png?v=3">
+
+<style>
+  /* Jason-ish layout; Ben's visual system stays unchanged. */
+  body{display:flex;flex-direction:column;font-size:1rem;line-height:1.48;}
+
+  .page{
+    width:min(44rem,calc(100% - 3rem));
+    max-width:none;
+    margin:0 auto;
+    padding:clamp(2.2rem,5.8vh,4.2rem) 0 1.5rem;
+  }
+  h1{
+    font-size:clamp(1.95rem,2.35vw,2.2rem);
+    margin:0 0 1.35rem;
+    line-height:1.02;
+    font-weight:600;
+    letter-spacing:-.018em;
+  }
+  p{margin:0 0 1em}
+  ul{margin:0 0 1.05em;padding-left:1.35em}
+  li{margin:.28em 0}
+
+  #theme{
+    left:auto;
+    right:1.2rem;
+    top:1.15rem;
+  }
+
+  .site-footer{
+    position:relative;
+    z-index:1;
+    width:min(44rem,calc(100% - 3rem));
+    margin:auto auto 0;
+    padding:1.1rem 0 2rem;
+  }
+  .links{
+    display:flex;
+    gap:1.35rem;
+    flex-wrap:wrap;
+    margin:0;
+    font-size:.94rem;
+  }
+  .links a{color:var(--soft)}
+  .stamp{margin:.9rem 0 0;color:var(--soft);font-style:italic;font-size:.9rem}
+
+  @media(max-width:700px){
+    body{display:block;}
+    .page{
+      width:auto;
+      max-width:none;
+      margin:0;
+      padding:1.5rem 1.4rem 1rem;
+    }
+    h1{font-size:2.05rem;margin-bottom:1.3rem}
+    .site-footer{
+      width:auto;
+      margin:0;
+      padding:1.3rem 1.4rem 2.2rem;
+    }
+    #theme{position:static;}
+  }
+</style>
 </head>
 <body>
 
@@ -118,6 +180,9 @@
     <li>Thinking about what to do next.</li>
   </ul>
   <p>I also care a lot about <a href="https://www.nosetgauge.com/p/the-technology-of-liberalism#:~:text=So%20instead%3A%20don%E2%80%99t%20try%20to%20specify%20them%2C%20don%E2%80%99t%20try%20to%20dictate%20them%20top%2Ddown%2C%20just%20lay%20down%20the%20infrastructure%20thats%20let%20people%20discover%20and%20find%20them%20on%20their%20own.%20In%20a%20word%3A%20freedom." target="_blank" rel="noopener noreferrer">freedom</a>, <a href="https://joecarlsmith.com/2024/01/16/being-nicer-than-clippy/#:~:text=I%20think%20the%20sort%20of%20pluralism%20and%20tolerance%20at%20the%20core%20of%20liberalism%20will%20often%20be%20more%20a%20promising%20guide%20than%20%E2%80%9Cgetting%20the%20utility%20function%20that%20steers%20the%20future%20right.%E2%80%9D" target="_blank" rel="noopener noreferrer">pluralism</a>, <a href="https://rootsofprogress.org/manifesto/" target="_blank" rel="noopener noreferrer">civilisational progress</a>, and <a href="https://farmanimalwelfare.substack.com/p/not-inevitable-not-impossible" target="_blank" rel="noopener noreferrer">the welfare of non-human animals</a> and <a href="https://experiencemachines.substack.com/p/we-should-take-ai-welfare-seriously" target="_blank" rel="noopener noreferrer">other minds</a>.</p>
+</main>
+
+<footer class="site-footer">
   <nav class="links" aria-label="Links">
     <a href="#" id="email-link">Email</a>
     <a href="https://www.linkedin.com/in/ben-d-norman/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
@@ -126,7 +191,7 @@
     <a href="https://www.admonymous.co/ben-norman" target="_blank" rel="noopener noreferrer">Feedback</a>
   </nav>
   <p class="stamp">Last updated August 2026</p>
-</main>
+</footer>
 
 <script>
   const root=document.documentElement,btn=document.getElementById('theme');
