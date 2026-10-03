@@ -107,7 +107,7 @@
   .page {
     max-width: 45rem;
     margin: 0 auto;
-    padding: clamp(1.75rem, 4vh, 2.75rem) 1.5rem 2rem;
+    padding: clamp(2.5rem, 5vh, 3.25rem) 1.5rem 2rem;
   }
 
   h1 {
@@ -150,7 +150,7 @@
   }
 
   .fig {
-    margin: 1.25rem 0 0;
+    margin: 1.8rem 0 0;
   }
 
   .photo {
@@ -169,7 +169,7 @@
     color: var(--soft);
     font-style: italic;
     font-size: 1rem;
-    margin-top: 1rem;
+    margin-top: 1.4rem;
   }
 
   #theme {
@@ -245,7 +245,7 @@
     }
 
     .page {
-      padding-top: 1.15rem;
+      padding-top: 1.5rem;
       padding-bottom: 1.5rem;
     }
   }
@@ -492,7 +492,6 @@
 </main>
 
 <script>
-
   const root =
     document.documentElement;
 
@@ -509,7 +508,6 @@
   sync();
 
   btn.addEventListener("click", () => {
-
     root.dataset.theme =
       root.dataset.theme === "dark"
         ? ""
@@ -523,14 +521,12 @@
     } catch (_) {}
 
     sync();
-
   });
 
   const e =
     document.getElementById("email-link");
 
   if (e) {
-
     const u = "bendnorman";
     const d = "protonmail" + "." + "com";
 
@@ -538,9 +534,7 @@
       "href",
       "mailto:" + u + "@" + d
     );
-
   }
-
 </script>
 
 </body>
