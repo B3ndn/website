@@ -10,14 +10,18 @@
 <script>
   (() => {
     let saved = null;
+
     try {
       saved = localStorage.getItem("theme");
     } catch (_) {}
 
-    const systemDark = matchMedia("(prefers-color-scheme: dark)").matches;
+    const systemDark =
+      matchMedia("(prefers-color-scheme: dark)").matches;
 
     document.documentElement.dataset.theme =
-      (saved === "dark" || (!saved && systemDark)) ? "dark" : "";
+      (saved === "dark" || (!saved && systemDark))
+        ? "dark"
+        : "";
   })();
 </script>
 
@@ -57,7 +61,12 @@
   body {
     margin: 0;
     min-height: 100vh;
-    font-family: "Newsreader", "Times New Roman", Times, "Liberation Serif", serif;
+    font-family:
+      "Newsreader",
+      "Times New Roman",
+      Times,
+      "Liberation Serif",
+      serif;
     font-optical-sizing: auto;
     font-size: 1.1875rem;
     line-height: 1.55;
@@ -96,7 +105,7 @@
   .page {
     max-width: 45rem;
     margin: 0 auto;
-    padding: clamp(2.25rem, 7vh, 4.5rem) 1.5rem 4rem;
+    padding: clamp(1.25rem, 3vh, 2rem) 1.5rem 2rem;
   }
 
   h1 {
@@ -104,15 +113,15 @@
     font-weight: 500;
     line-height: 1;
     letter-spacing: -.015em;
-    margin: 0 0 2.2rem;
+    margin: 0 0 1.5rem;
   }
 
   p {
-    margin: 0 0 1.1em;
+    margin: 0 0 .9em;
   }
 
   ul {
-    margin: 0 0 1.1em;
+    margin: 0 0 .9em;
     padding-left: 1.1em;
   }
 
@@ -125,7 +134,7 @@
     justify-content: center;
     gap: 1.4rem;
     flex-wrap: wrap;
-    margin-top: 2.4rem;
+    margin-top: 1.5rem;
     font-size: 1.05rem;
   }
 
@@ -139,7 +148,7 @@
   }
 
   .fig {
-    margin: 2.6rem 0 0;
+    margin: 1.25rem 0 0;
   }
 
   .photo {
@@ -158,7 +167,7 @@
     color: var(--soft);
     font-style: italic;
     font-size: 1rem;
-    margin-top: 2rem;
+    margin-top: .75rem;
   }
 
   #theme {
@@ -228,7 +237,8 @@
     }
 
     .page {
-      padding-top: 1.5rem;
+      padding-top: .9rem;
+      padding-bottom: 1.5rem;
     }
   }
 
@@ -239,20 +249,31 @@
   }
 </style>
 
-<link rel="icon" type="image/png" href="/favicon.png?v=3">
-<link rel="shortcut icon" type="image/png" href="/favicon.png?v=3">
+<link
+  rel="icon"
+  type="image/png"
+  href="/favicon.png?v=3"
+>
+
+<link
+  rel="shortcut icon"
+  type="image/png"
+  href="/favicon.png?v=3"
+>
 
 </head>
 
 <body>
 
 <div class="theme-bar">
+
   <button
     id="theme"
     type="button"
     aria-label="Toggle dark mode"
     aria-pressed="false"
   >
+
     <svg
       viewBox="0 0 24 24"
       fill="none"
@@ -261,6 +282,7 @@
       stroke-linecap="round"
       stroke-linejoin="round"
     >
+
       <path
         class="moon"
         d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"
@@ -268,10 +290,23 @@
 
       <g class="sun">
         <circle cx="12" cy="12" r="4"/>
-        <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/>
+
+        <path
+          d="M12 2.5v2
+             M12 19.5v2
+             M2.5 12h2
+             M19.5 12h2
+             M5.3 5.3l1.4 1.4
+             M17.3 17.3l1.4 1.4
+             M5.3 18.7l1.4-1.4
+             M17.3 6.7l1.4-1.4"
+        />
       </g>
+
     </svg>
+
   </button>
+
 </div>
 
 <main class="page">
@@ -285,7 +320,8 @@
       target="_blank"
       rel="noopener noreferrer"
     >AI could soon be smarter than humans at almost everything</a>.
-    I want to do what I can to improve the odds the world navigates this situation well.
+    I want to do what I can to improve the odds the world navigates
+    this situation well.
   </p>
 
   <p>
@@ -301,7 +337,8 @@
       target="_blank"
       rel="noopener noreferrer"
     >Rapid Grants</a>,
-    a programme that funds time and resources for AI safety and biosecurity work.
+    a programme that funds time and resources for AI safety and
+    biosecurity work.
   </p>
 
   <p>
@@ -311,9 +348,9 @@
       target="_blank"
       rel="noopener noreferrer"
     >Safe AI Forum</a>,
-    researching opportunities for international coordination to prevent AI-enabled
-    biological misuse. I also spent some time thinking about what feasible
-    international agreements on AI could look like.
+    researching opportunities for international coordination to prevent
+    AI-enabled biological misuse. I also spent some time thinking about
+    what feasible international agreements on AI could look like.
   </p>
 
   <p>
@@ -359,34 +396,47 @@
   </p>
 
   <nav class="links" aria-label="Links">
-    <a href="#" id="email-link">Email</a>
+
+    <a href="#" id="email-link">
+      Email
+    </a>
 
     <a
       href="https://www.linkedin.com/in/ben-d-norman/"
       target="_blank"
       rel="noopener noreferrer"
-    >LinkedIn</a>
+    >
+      LinkedIn
+    </a>
 
     <a
       href="https://x.com/ben_d_norman"
       target="_blank"
       rel="noopener noreferrer"
-    >X</a>
+    >
+      X
+    </a>
 
     <a
       href="https://substack.com/@bennorman"
       target="_blank"
       rel="noopener noreferrer"
-    >Substack</a>
+    >
+      Substack
+    </a>
 
     <a
       href="https://www.admonymous.co/ben-norman"
       target="_blank"
       rel="noopener noreferrer"
-    >Feedback</a>
+    >
+      Feedback
+    </a>
+
   </nav>
 
   <figure class="fig">
+
     <picture>
 
       <source
@@ -414,10 +464,12 @@
         height="480"
         loading="lazy"
         decoding="async"
-        alt="Watercolour illustration of San Francisco Bay framed by cypress trees"
+        alt="San Francisco Bay seen through cypress trees"
+        title="San Francisco Bay seen through cypress trees"
       >
 
     </picture>
+
   </figure>
 
   <p class="stamp">
@@ -427,8 +479,12 @@
 </main>
 
 <script>
-  const root = document.documentElement;
-  const btn = document.getElementById("theme");
+
+  const root =
+    document.documentElement;
+
+  const btn =
+    document.getElementById("theme");
 
   const sync = () => {
     btn.setAttribute(
@@ -440,8 +496,11 @@
   sync();
 
   btn.addEventListener("click", () => {
+
     root.dataset.theme =
-      root.dataset.theme === "dark" ? "" : "dark";
+      root.dataset.theme === "dark"
+        ? ""
+        : "dark";
 
     try {
       localStorage.setItem(
@@ -451,15 +510,24 @@
     } catch (_) {}
 
     sync();
+
   });
 
-  const e = document.getElementById("email-link");
+  const e =
+    document.getElementById("email-link");
 
   if (e) {
+
     const u = "bendnorman";
     const d = "protonmail" + "." + "com";
-    e.setAttribute("href", "mailto:" + u + "@" + d);
+
+    e.setAttribute(
+      "href",
+      "mailto:" + u + "@" + d
+    );
+
   }
+
 </script>
 
 </body>
