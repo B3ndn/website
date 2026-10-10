@@ -43,6 +43,7 @@
     --hl-bg: #f6d5b3;
     --hl-border: #e0ad7f;
     --hl-ink: #171512;
+    --orange: #b0521a;
     --warm-link: #2a4f35;
     --warm-rule: rgba(42, 79, 53, .32);
   }
@@ -56,6 +57,7 @@
     --hl-bg: rgba(246, 213, 179, .12);
     --hl-border: #e8b98c;
     --hl-ink: #f6d5b3;
+    --orange: #f0b27e;
     --warm-link: #c3dcbc;
     --warm-rule: rgba(195, 220, 188, .32);
   }
@@ -123,7 +125,7 @@
     width: 100%;
     max-width: 40rem;
     margin: 0 auto;
-    padding: clamp(3rem, 6vh, 4rem) 1.5rem 2rem;
+    padding: clamp(4rem, 9vh, 5.5rem) 1.5rem 2rem;
   }
 
   h1 {
@@ -190,17 +192,16 @@
     gap: .45em;
     width: fit-content;
     margin: 0 auto;
-    padding: .8em 1.5em .72em;
-    line-height: 1;
-    border: 1px solid var(--rule);
-    border-radius: 0;
+    padding: 0;
+    line-height: 1.2;
+    border: 0;
     color: var(--soft);
     font-style: italic;
     font-size: 1.05rem;
     cursor: pointer;
     list-style: none;
     user-select: none;
-    transition: color .2s, border-color .2s, background-color .2s;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .more summary::-webkit-details-marker {
@@ -238,11 +239,14 @@
     color: #d9d3c6;
   }
 
-  html .more summary:hover,
   html .more summary:focus-visible {
-    color: var(--hl-ink);
-    border-color: var(--hl-border);
-    background-color: var(--hl-bg);
+    color: var(--warm-link);
+  }
+
+  @media (hover: hover) {
+    html .more summary:hover {
+      color: var(--warm-link);
+    }
   }
 
   .more-body {
@@ -355,7 +359,7 @@
     }
 
     .page {
-      padding-top: 2rem;
+      padding-top: 1rem;
       padding-bottom: 1.5rem;
     }
   }
@@ -438,7 +442,7 @@
       target="_blank"
       rel="noopener noreferrer"
     >could soon</a> be smarter than humans at almost everything.
-    I want to help the world navigate this wild situation well.
+    I want to help the world navigate this situation well.
   </p>
 
   <p>Currently:</p>
@@ -460,12 +464,12 @@
       a programme that funds AI safety and biosecurity work.
     </li>
     <li>
-      Reading, thinking about and discussing
+      Reading, thinking about and discussing topics in
       <a
         href="https://blog.redwoodresearch.org/p/ai-futurism-reading-list"
         target="_blank"
         rel="noopener noreferrer"
-      >AI futures</a>.
+      >AI futurism</a>.
     </li>
   </ul>
 
@@ -479,14 +483,14 @@
         target="_blank"
         rel="noopener noreferrer"
       >AI-enabled biological misuse</a>
-      at the
+      (at the
       <a
         href="https://saif.org/"
         target="_blank"
         rel="noopener noreferrer"
-      >Safe AI Forum</a>,
-      and contributed to broader strategy on what international AI
-      agreements could look like.
+      >Safe AI Forum</a>),
+      as well as broader strategy on what international agreements on AI
+      could look like.
     </li>
     <li>
       Scoped out ways to accelerate
@@ -532,7 +536,7 @@
           target="_blank"
           rel="noopener noreferrer"
         >weirdest fruits</a>,
-        learning about subcultures, and spending time with friends and
+        learning about online subcultures, and spending time with friends and
         family.
       </p>
 
@@ -544,7 +548,7 @@
       <p>
         I care a lot about
         <a
-          href="https://www.nosetgauge.com/p/the-technology-of-liberalism#:~:text=So%20instead%3A%20don%E2%80%99t%20try%20to%20specify%20them%2C%20don%E2%80%99t%20try%20to%20dictate%20them%20top%2Ddown%2C%20just%20lay%20down%20the%20infrastructure%20thats%20let%20people%20discover%20and%20find%20them%20on%20their%20own.%20In%20a%20word%3A%20freedom."
+          href="https://www.nosetgauge.com/p/the-technology-of-liberalism#:~:text=Much%20as%20there%E2%80%99s,a%20word%3A%20freedom."
           target="_blank"
           rel="noopener noreferrer"
         >freedom</a>,
@@ -557,18 +561,33 @@
           href="https://rootsofprogress.org/manifesto/"
           target="_blank"
           rel="noopener noreferrer"
-        >civilisational progress</a>,
-        and
+        >progress</a>,
         <a
           href="https://farmanimalwelfare.substack.com/p/not-inevitable-not-impossible"
           target="_blank"
           rel="noopener noreferrer"
-        >animal welfare</a>.
+        >animals</a>,
+        <a
+          href="https://www.economist.com/by-invitation/2026/10/04/will-macaskill-responds-to-our-cover-story-on-effective-altruism"
+          target="_blank"
+          rel="noopener noreferrer"
+        >effective altruism</a>,
+        and
+        <a
+          href="https://en.wikipedia.org/wiki/The_Scout_Mindset"
+          target="_blank"
+          rel="noopener noreferrer"
+        >seeing the world more clearly</a>.
+        And despite the stakes and the stars:
+        <a
+          href="https://dictionary.cambridge.org/dictionary/english/levity"
+          target="_blank"
+          rel="noopener noreferrer"
+        >levity</a>.
       </p>
     </div>
 
   </details>
-
 
 </main>
 
