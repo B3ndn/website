@@ -35,10 +35,16 @@
 
 <style>
   :root {
-    --paper: #fbfaf7;
+    --paper: #ffffff;
     --ink: #171512;
     --soft: #6b665c;
     --link: #1f3aa6;
+    --rule: rgba(23, 21, 18, .18);
+    --hl-bg: #f6d5b3;
+    --hl-border: #e0ad7f;
+    --hl-ink: #171512;
+    --warm-link: #2a4f35;
+    --warm-rule: rgba(42, 79, 53, .32);
   }
 
   html[data-theme="dark"] {
@@ -46,6 +52,12 @@
     --ink: #ece6d8;
     --soft: #a39d90;
     --link: #a9b8ff;
+    --rule: rgba(236, 230, 216, .2);
+    --hl-bg: rgba(246, 213, 179, .12);
+    --hl-border: #e8b98c;
+    --hl-ink: #f6d5b3;
+    --warm-link: #c3dcbc;
+    --warm-rule: rgba(195, 220, 188, .32);
   }
 
   * {
@@ -61,6 +73,8 @@
   body {
     margin: 0;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 
     font-family:
       "Newsreader",
@@ -70,7 +84,7 @@
       serif;
 
     font-optical-sizing: auto;
-    font-size: 1.1875rem;
+    font-size: 1.15625rem;
     line-height: 1.55;
     -webkit-text-size-adjust: 100%;
 
@@ -105,9 +119,11 @@
   }
 
   .page {
-    max-width: 45rem;
+    flex: 1 0 auto;
+    width: 100%;
+    max-width: 40rem;
     margin: 0 auto;
-    padding: clamp(2.5rem, 5vh, 3.25rem) 1.5rem 2rem;
+    padding: clamp(3rem, 6vh, 4rem) 1.5rem 2rem;
   }
 
   h1 {
@@ -149,29 +165,123 @@
     color: var(--link);
   }
 
-  .fig {
-    margin: 1.8rem 0 0;
+  .contact a {
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: .18em;
+    text-decoration-color: var(--soft);
   }
 
-  .photo {
+  .contact a:hover,
+  .contact a:focus-visible {
+    color: var(--link);
+    text-decoration-color: var(--link);
+  }
+
+  .more {
+    margin-top: 2.6rem;
+  }
+
+  .more summary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .45em;
+    width: fit-content;
+    margin: 0 auto;
+    padding: .8em 1.5em .72em;
+    line-height: 1;
+    border: 1px solid var(--rule);
+    border-radius: 0;
+    color: var(--soft);
+    font-style: italic;
+    font-size: 1.05rem;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    transition: color .2s, border-color .2s, background-color .2s;
+  }
+
+  .more summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .more summary::before,
+  .more summary::after {
+    content: "›";
     display: block;
-    width: 100%;
-    height: auto;
-    border-radius: 2px;
+    width: .5em;
+    text-align: center;
+    font-style: normal;
+    line-height: 1;
+    transition: transform .2s;
   }
 
-  html[data-theme="dark"] .photo {
-    filter: brightness(.8) saturate(.9);
+  .more summary::before {
+    visibility: hidden;
+  }
+
+  .more summary .label {
+    display: block;
+  }
+
+  .more[open] summary::after {
+    transform: rotate(90deg);
+  }
+
+  .more summary::-moz-list-bullet {
+    display: none;
+  }
+
+  html[data-theme="dark"] .more summary {
+    color: #d9d3c6;
+  }
+
+  html .more summary:hover,
+  html .more summary:focus-visible {
+    color: var(--hl-ink);
+    border-color: var(--hl-border);
+    background-color: var(--hl-bg);
+  }
+
+  .more-body {
+    margin-top: 1.6rem;
+  }
+
+  .fn-mark {
+    font-size: .7em;
+    line-height: 0;
+    margin-left: .05em;
+    color: var(--soft);
+  }
+
+  .footnote {
+    margin-top: 1.4em;
+    color: var(--soft);
+    font-size: .85rem;
+  }
+
+  .more-body a {
+    color: var(--warm-link);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: .18em;
+    text-decoration-color: var(--warm-rule);
+  }
+
+  .more-body a:hover,
+  .more-body a:focus-visible {
+    text-decoration-color: currentColor;
   }
 
   .stamp {
     text-align: center;
     color: var(--soft);
-    font-style: italic;
-    font-size: 1rem;
-    margin-top: 1.4rem;
+    font-size: .95rem;
+    margin: 0;
+    padding: 1.5rem 1.5rem 1.75rem;
   }
-
   #theme {
     position: absolute;
     top: 1.1rem;
@@ -245,7 +355,7 @@
     }
 
     .page {
-      padding-top: 1.5rem;
+      padding-top: 2rem;
       padding-bottom: 1.5rem;
     }
   }
@@ -322,147 +432,149 @@
   <h1>Ben Norman</h1>
 
   <p>
-    Hi, I'm Ben. I believe that
+    Hi, I'm Ben! I believe that AI
     <a
       href="https://80000hours.org/ai/guide/summary/"
       target="_blank"
       rel="noopener noreferrer"
-    >AI could soon be smarter than humans at almost everything</a>.
-    I want to do what I can to improve the odds the world navigates
-    this situation well.
+    >could soon</a> be smarter than humans at almost everything.
+    I want to help the world navigate this wild situation well.
   </p>
 
-  <p>
-    Currently, I'm a Grantmaking Fellow at
-    <a
-      href="https://bluedot.org/"
-      target="_blank"
-      rel="noopener noreferrer"
-    >BlueDot Impact</a>.
-    I mainly work on
-    <a
-      href="https://bluedot.org/grants/rapid"
-      target="_blank"
-      rel="noopener noreferrer"
-    >Rapid Grants</a>,
-    a programme that funds time and resources for AI safety and
-    biosecurity work.
-  </p>
+  <p>Currently:</p>
 
-  <p>
-    Previously, I was a Visiting Researcher at the
-    <a
-      href="https://saif.org/"
-      target="_blank"
-      rel="noopener noreferrer"
-    >Safe AI Forum</a>,
-    researching opportunities for international coordination to prevent
-    <a
-      href="https://80000hours.org/podcast/episodes/richard-moulange-ai-bioweapons-biorisk/"
-      target="_blank"
-      rel="noopener noreferrer"
-    >AI-enabled biological misuse</a>.
-    I also contributed to broader strategy at SAIF, including work on
-    international AI agreements.
-  </p>
+  <ul>
+    <li>
+      Working part-time as a Grantmaking Fellow at
+      <a
+        href="https://bluedot.org/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >BlueDot Impact</a>,
+      mainly on
+      <a
+        href="https://bluedot.org/grants/rapid"
+        target="_blank"
+        rel="noopener noreferrer"
+      >Rapid Grants</a>,
+      a programme that funds AI safety and biosecurity work.
+    </li>
+    <li>
+      Reading, thinking about and discussing
+      <a
+        href="https://blog.redwoodresearch.org/p/ai-futurism-reading-list"
+        target="_blank"
+        rel="noopener noreferrer"
+      >AI futures</a>.
+    </li>
+  </ul>
 
-<p>
-  Other projects include: trying to figure out how to get more AI tools for better decisions and coordination built,
-  co-organising a hackathon,
-  and more miscellaneous activities.
-</p>
+  <p>Previously:</p>
 
-  <p>
-    I also care a lot about
-    <a
-      href="https://www.nosetgauge.com/p/the-technology-of-liberalism#:~:text=So%20instead%3A%20don%E2%80%99t%20try%20to%20specify%20them%2C%20don%E2%80%99t%20try%20to%20dictate%20them%20top%2Ddown%2C%20just%20lay%20down%20the%20infrastructure%20thats%20let%20people%20discover%20and%20find%20them%20on%20their%20own.%20In%20a%20word%3A%20freedom."
-      target="_blank"
-      rel="noopener noreferrer"
-    >freedom</a>,
-    <a
-      href="https://joecarlsmith.com/2024/01/16/being-nicer-than-clippy/#:~:text=I%20think%20the%20sort%20of%20pluralism%20and%20tolerance%20at%20the%20core%20of%20liberalism%20will%20often%20be%20more%20a%20promising%20guide%20than%20%E2%80%9Cgetting%20the%20utility%20function%20that%20steers%20the%20future%20right.%E2%80%9D"
-      target="_blank"
-      rel="noopener noreferrer"
-    >pluralism</a>,
-    <a
-      href="https://rootsofprogress.org/manifesto/"
-      target="_blank"
-      rel="noopener noreferrer"
-    >civilisational progress</a>,
-    and
-    <a
-      href="https://farmanimalwelfare.substack.com/p/not-inevitable-not-impossible"
-      target="_blank"
-      rel="noopener noreferrer"
-    >animal welfare</a>.
-  </p>
+  <ul>
+    <li>
+      Researched opportunities for international coordination to prevent
+      <a
+        href="https://80000hours.org/podcast/episodes/richard-moulange-ai-bioweapons-biorisk/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >AI-enabled biological misuse</a>
+      at the
+      <a
+        href="https://saif.org/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >Safe AI Forum</a>,
+      and contributed to broader strategy on what international AI
+      agreements could look like.
+    </li>
+    <li>
+      Scoped out ways to accelerate
+      <a
+        href="https://www.lesswrong.com/posts/uw8RQ8yjKexnhTw6E/state-of-the-field-ai-for-epistemics-and-coordination"
+        target="_blank"
+        rel="noopener noreferrer"
+      >AI tools for better decisions and coordination</a>.
+    </li>
+  </ul>
 
-  <nav class="links" aria-label="Links">
-
-    <a href="#" id="email-link">Email</a>
-
-    <a
-      href="https://www.linkedin.com/in/ben-d-norman/"
-      target="_blank"
-      rel="noopener noreferrer"
-    >LinkedIn</a>
-
+  <p class="contact">
+    Reach me by <a href="#" class="email-link">email</a> (preferred),
     <a
       href="https://x.com/ben_d_norman"
       target="_blank"
       rel="noopener noreferrer"
-    >X</a>
-
+    >X</a>,
+    <a
+      href="https://www.linkedin.com/in/ben-d-norman/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >LinkedIn</a>,
+    or anonymous
     <a
       href="https://www.admonymous.co/ben-norman"
       target="_blank"
       rel="noopener noreferrer"
-    >Feedback</a>
-
-  </nav>
-
-  <figure class="fig">
-
-    <picture>
-
-      <source
-        type="image/avif"
-        srcset="
-          bay-watercolour-720.avif 720w,
-          bay-watercolour-1440.avif 1440w
-        "
-        sizes="(max-width: 720px) calc(100vw - 3rem), 672px"
-      >
-
-      <source
-        type="image/webp"
-        srcset="
-          bay-watercolour-720.webp 720w,
-          bay-watercolour-1440.webp 1440w
-        "
-        sizes="(max-width: 720px) calc(100vw - 3rem), 672px"
-      >
-
-      <img
-        class="photo"
-        src="bay-watercolour-1440.webp"
-        width="1440"
-        height="480"
-        loading="lazy"
-        decoding="async"
-        alt="San Francisco Bay seen through cypress trees"
-        title="San Francisco Bay seen through cypress trees"
-      >
-
-    </picture>
-
-  </figure>
-
-  <p class="stamp">
-    Last updated October 2026
+      title="I'd appreciate feedback on ways I could do better (in work and in life more broadly)!"
+    >feedback</a>
+    form.
   </p>
 
+  <details class="more">
+
+    <summary><span class="label">Outside of trying to make AI go well…</span></summary>
+
+    <div class="more-body">
+      <p>
+        I enjoy going for walks in nature, searching for the world's
+        <a
+          href="https://weirdexplorer.com/name"
+          target="_blank"
+          rel="noopener noreferrer"
+        >weirdest fruits</a>,
+        learning about subcultures, and spending time with friends and
+        family.
+      </p>
+
+      <p>
+        I'm a citizen of Canada, but have mostly lived in London, England,
+        since 2016.
+      </p>
+
+      <p>
+        I care a lot about
+        <a
+          href="https://www.nosetgauge.com/p/the-technology-of-liberalism#:~:text=So%20instead%3A%20don%E2%80%99t%20try%20to%20specify%20them%2C%20don%E2%80%99t%20try%20to%20dictate%20them%20top%2Ddown%2C%20just%20lay%20down%20the%20infrastructure%20thats%20let%20people%20discover%20and%20find%20them%20on%20their%20own.%20In%20a%20word%3A%20freedom."
+          target="_blank"
+          rel="noopener noreferrer"
+        >freedom</a>,
+        <a
+          href="https://joecarlsmith.com/2024/01/16/being-nicer-than-clippy/#:~:text=I%20think%20the%20sort%20of%20pluralism%20and%20tolerance%20at%20the%20core%20of%20liberalism%20will%20often%20be%20more%20a%20promising%20guide%20than%20%E2%80%9Cgetting%20the%20utility%20function%20that%20steers%20the%20future%20right.%E2%80%9D"
+          target="_blank"
+          rel="noopener noreferrer"
+        >pluralism</a>,
+        <a
+          href="https://rootsofprogress.org/manifesto/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >civilisational progress</a>,
+        and
+        <a
+          href="https://farmanimalwelfare.substack.com/p/not-inevitable-not-impossible"
+          target="_blank"
+          rel="noopener noreferrer"
+        >animal welfare</a>.
+      </p>
+    </div>
+
+  </details>
+
+
 </main>
+
+<footer class="stamp">
+  Last updated October 2026
+</footer>
 
 <script>
   const root =
@@ -496,18 +608,14 @@
     sync();
   });
 
-  const e =
-    document.getElementById("email-link");
+  const u = "bendnorman";
+  const d = "protonmail" + "." + "com";
 
-  if (e) {
-    const u = "bendnorman";
-    const d = "protonmail" + "." + "com";
-
-    e.setAttribute(
-      "href",
-      "mailto:" + u + "@" + d
-    );
-  }
+  document
+    .querySelectorAll("#email-link, .email-link")
+    .forEach((e) => {
+      e.setAttribute("href", "mailto:" + u + "@" + d);
+    });
 </script>
 
 </body>
